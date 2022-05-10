@@ -1,0 +1,14 @@
+.SideNavComponent {
+    width: 10%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: purple;
+    position: fixed;
+}
+
+.SideNavComponent a {
+    padding: 6px 8px 6px 16px;
+    color: white;
+    display: block;
+}
