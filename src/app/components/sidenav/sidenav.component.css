@@ -1,14 +1,35 @@
 .SideNavComponent {
-    width: 10%;
+    width: 5%;
     height: 100%;
     top: 0;
     left: 0;
-    background-color: purple;
+    background-color: #800080;
     position: fixed;
+
+    /* Adjust the box to the middle */
+    justify-content: center;
+    display: flex;
 }
 
-.SideNavComponent a {
-    padding: 6px 8px 6px 16px;
-    color: white;
+.IconComponent {
     display: block;
+    /* background-color: black; */
+    width: 50%;
+    height: 100%;
+
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.IconComponent a mat-icon {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 250%;
+    color: aliceblue;
+}
+
+.IconComponent a mat-icon:hover {
+    color:#52dc90;
 }
