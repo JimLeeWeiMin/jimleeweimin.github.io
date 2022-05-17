@@ -1,7 +1,7 @@
 .HomePageWrapper {
     width: 100%;
     height: 100%;
-    background-color: dimgray;
+    background-color: black;
 }
 
 .WelcomeMessage {
@@ -20,6 +20,7 @@
 
     /* Set the font size */
     font-size: 50px;
+    color: white;
 }
 
 .WelcomeMessage span {
@@ -47,7 +48,7 @@
     
   }
   @keyframes gelatine {
-    from {color: black} to { color: teal; transform: scale(1, 1); }
+    from {color: white} to { color: cyan; transform: scale(1, 1); }
     25% { transform: scale(0.9, 1.1); }
     50% { transform: scale(1.1, 0.9); }
     75% { transform: scale(0.95, 1.05); }
