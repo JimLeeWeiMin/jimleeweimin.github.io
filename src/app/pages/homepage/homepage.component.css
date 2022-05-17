@@ -8,7 +8,7 @@
 
     /* Set the position of the wrapper */
     position:absolute;
-    margin-top: 40%;
+    margin-top: 20%;
     margin-left: 10%;
 
     /* Set the div box size   */
@@ -17,11 +17,38 @@
 
     /* Debugging */
     /* background-color: beige; */
+
+    /* Set the font size */
+    font-size: 50px;
 }
 
 .WelcomeMessage span {
-    /* Set the font size */
-    font-size: 34px;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+
+    user-select:none;
+    display:inline-block;
 }
+
+.WelcomeMessage span.space {
+    padding: 0 5px !important;
+    margin:0 1px;
+}
+
+.WelcomeMessage span.letter:hover {
+    animation-name: gelatine;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.gelatine {
+    animation: gelatine;
+    
+  }
+  @keyframes gelatine {
+    from {color: black} to { color: teal; transform: scale(1, 1); }
+    25% { transform: scale(0.9, 1.1); }
+    50% { transform: scale(1.1, 0.9); }
+    75% { transform: scale(0.95, 1.05); }
+  }
