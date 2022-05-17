@@ -33,12 +33,7 @@
 .IconComponent a mat-icon {
     margin-top: 50px;
     margin-bottom: 50px;
-    /* margin-left: 5px;
-    margin-right: 5px; */
-    /* font-size: 250%; */
     transform: scale(1,1);
-    
-
     color: aliceblue;
 }
 
