@@ -7,7 +7,7 @@ import { ScatterStuffComponent } from './pages/scatter-stuff/scatter-stuff.compo
 
 const routes: Routes = [
   {
-    path:'', redirectTo: 'pages/Home', pathMatch: "full"
+    path:'', redirectTo: '/pages/Home', pathMatch: "full"
   },
   {
     path:"pages/Home",
