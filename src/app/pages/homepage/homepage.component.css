@@ -3,3 +3,25 @@
     height: 100%;
     background-color: dimgray;
 }
+
+.WelcomeMessage {
+
+    /* Set the position of the wrapper */
+    position:absolute;
+    margin-top: 40%;
+    margin-left: 10%;
+
+    /* Set the div box size   */
+    width:60%;
+    height:40%;
+
+    /* Debugging */
+    /* background-color: beige; */
+}
+
+.WelcomeMessage span {
+    /* Set the font size */
+    font-size: 34px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
