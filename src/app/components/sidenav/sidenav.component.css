@@ -39,4 +39,20 @@
 
 .IconComponent a mat-icon:hover {
     color:#52dc90;
+    
+    animation-name: gelatine;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
+
+.gelatine {
+    animation: gelatine;
+    
+  }
+  @keyframes gelatine {
+    from {color: white} to { color: cyan; transform: scale(1, 1); }
+    25% { transform: scale(0.9, 1.1); }
+    50% { transform: scale(1.1, 0.9); }
+    75% { transform: scale(0.95, 1.05); }
+  }
