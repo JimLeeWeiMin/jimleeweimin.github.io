@@ -18,18 +18,20 @@
     /* Debugging */
     /* background-color: beige; */
 
-    /* Set the font size */
-    font-size: 50px;
-    color: white;
+    
 }
 
 .WelcomeMessage span {
     margin-top: 5%;
     margin-bottom: 5%;
 
-
     user-select:none;
     display:inline-block;
+
+    /* Set the font */
+    font-size: 70px;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .WelcomeMessage span.space {
