@@ -3,3 +3,8 @@
     height: 100%;
     background-color: darkslateblue;
 }
+
+#canvas {
+    border-style: solid;
+    color: white;
+}
