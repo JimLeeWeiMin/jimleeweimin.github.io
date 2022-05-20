@@ -13,6 +13,10 @@ export class ScatterStuffComponent implements AfterViewInit {
   @ViewChild('canvasEl') 
   private canvasEl: ElementRef = {} as ElementRef;
 
+  //Refer to the div that holds the canvas
+  @ViewChild('MyParticleCanvas')
+  private myIdentifer: ElementRef = {} as ElementRef;
+
   /** Canvas 2d context */
   private ctx!: CanvasRenderingContext2D;
 
@@ -20,10 +24,17 @@ export class ScatterStuffComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.ctx = this.canvasEl.nativeElement.getContext('2d');
+
+    //Fit to div
+    this.ctx.canvas.style.width = '100%';
+    this.ctx.canvas.style.height = '100%';
+    this.ctx.canvas.width = this.myIdentifer.nativeElement.offsetWidth;
+    this.ctx.canvas.height = this.myIdentifer.nativeElement.offsetHeight;
+
+    
   }
 
   animate(): void {
-
     this.ctx.fillStyle = 'rgb(200, 0, 0)';
     this.ctx.fillRect(10, 10, 50, 50);
 
