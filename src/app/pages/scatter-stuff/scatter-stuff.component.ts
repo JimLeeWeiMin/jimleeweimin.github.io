@@ -79,6 +79,9 @@ class Particle {
   velX: number = 0;
   velY: number = 0;
 
+  //Current Size
+  size: number = 0;
+
   //Boundary
   minBoundX: number = 0;
   minBoundY: number = 0;
@@ -89,7 +92,7 @@ class Particle {
   //Calls when particle is constructed
   constructor(_minBoundX: number, _minBoundY: number,
               _maxBoundX: number, _maxBoundY: number,
-              _minVel: number, _maxVel: number) {
+              _minVel: number, _maxVel: number, _size: number) {
                 
                 this.posX = Math.floor(Math.random() * _maxBoundX) + _minBoundX;
                 this.posY = Math.floor(Math.random() * _maxBoundY) + _minBoundY;
@@ -102,6 +105,8 @@ class Particle {
 
                 this.maxBoundX = _maxBoundX;
                 this.maxBoundY = _maxBoundY;
+
+                this.size = _size;
   }
 
   //Updates the current particle location
@@ -143,6 +148,11 @@ class ParticleEmitter {
   minVelocity: number = 1;
   maxVelocity: number = 3;
 
+  //Store the min and max size of the particle
+  minSize: number = 2;
+  maxSize: number = 5;
+
+
   //Stores the canvas
   ctx!: CanvasRenderingContext2D;
 
@@ -164,7 +174,8 @@ class ParticleEmitter {
                 {
                   this.arrParticle.push(new Particle( this.minBoundX, this.minBoundY,
                                                       this.maxBoundX, this.maxBoundY,
-                                                      this.minVelocity, this.maxVelocity));
+                                                      this.minVelocity, this.maxVelocity,
+                                                      Math.floor(Math.random() * this.maxSize) + this.minSize));
                 }
   }
 
@@ -184,8 +195,18 @@ class ParticleEmitter {
 
     for(let i = 0; i < this.maxParticle; ++i)
     {
+      
+      //this.ctx.fillRect(this.arrParticle[i].posX, this.arrParticle[i].posY, 10, 10);
+
+      this.ctx.beginPath();
+      
+      this.ctx.arc( this.arrParticle[i].posX, this.arrParticle[i].posY,
+                    this.arrParticle[i].size, 0, 2 * Math.PI);
+
       this.ctx.fillStyle = 'rgb(200, 0, 0)';
-      this.ctx.fillRect(this.arrParticle[i].posX, this.arrParticle[i].posY, 10, 10);
+      this.ctx.fill();
+      //this.ctx.stroke();
+
     }
   }
 }
