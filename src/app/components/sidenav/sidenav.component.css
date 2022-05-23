@@ -9,6 +9,12 @@
     /* Adjust the box to the middle */
     justify-content: center;
     display: flex;
+
+    /* Adds a white border to the right */
+    /* border-right: 3px solid white; */
+
+    /* Brings it to front */
+    z-index: 10;
 }
 
 .IconComponent {

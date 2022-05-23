@@ -6,6 +6,39 @@
     position:relative;
 }
 
+.RightColumnWrapper {
+    width: 20%;
+    height: 100%;
+    background-color: aqua;
+
+    /* Move the wrapper to the right side  */
+    float:right;
+}
+
+.InfoColumn {
+    width: 100%;
+    height: 60%;
+    background-color: orange;
+
+    position: relative;
+}
+
+.Pages {
+    width: 100%;
+    height: 40%;
+    background-color: white;
+
+    position: relative;
+}
+
+.MyStuffWrapper {
+    width: 80%;
+    height: 100%;
+    background-color: black;
+
+    position: relative;
+}
+
 #canvas {
     border-style: solid;
     color: white;
