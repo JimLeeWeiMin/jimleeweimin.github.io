@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, ViewChild, ElementRef, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
@@ -29,6 +28,10 @@ export class ScatterStuffComponent implements AfterViewInit {
   //Stores the lastTime to calculate deltaTime
   private lastTime: number | null;
 
+  //Stores mouse position
+  private mosX : number = 0;
+  private mosY : number = 0;
+
   constructor(private _ngZone: NgZone) {
     this.lastTime = null;
   }
@@ -44,6 +47,18 @@ export class ScatterStuffComponent implements AfterViewInit {
 
     //Construct my particle emitter
     this.myPM = new ParticleEmitter(this.ctx, 0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+
+    // Start the animation
+    this.animate();
+  }
+
+  getMousePos(evt: MouseEvent) {
+    this.mosX = evt.offsetX;
+    this.mosY = evt.offsetY;
+
+    //console.log("This fn is called");
+    //console.log(evt);
+    //console.log("Mouse pos: " + this.mosX + " " +this.mosY);
   }
 
   ngOnDestory() {
@@ -63,11 +78,13 @@ export class ScatterStuffComponent implements AfterViewInit {
     window.requestAnimationFrame(() => this.Update(_pm));
 
     //Update the particle
-    _pm.Update()
+    _pm.Update(this.mosX, this.mosY);
 
     //Draw the particle
     _pm.Draw();
   }
+
+
 }
 
 class Particle {
@@ -78,6 +95,10 @@ class Particle {
   //Current speed
   velX: number = 0;
   velY: number = 0;
+
+  //Additional Speed
+  addSpeedX: number = 0;
+  addSpeedY: number = 0;
 
   //Current Size
   size: number = 0;
@@ -109,8 +130,42 @@ class Particle {
                 this.size = _size;
   }
 
-  //Updates the current particle location
-  Update() : void {
+  //Updates the current particle location (mDist is already square)
+  Update(mx: number, my: number, mdist: number) : void {
+
+    
+
+    //Get the mouse location
+    // let tmpDx = (this.posX - mx); 
+    // tmpDx *= tmpDx;
+    // let tmpDy = (this.posY - my);
+    // tmpDy *- tmpDy;
+    // let tmpD = tmpDx + tmpDy;
+
+    // //If its nearby, move the away from the mouse cursor
+    // if(tmpD <= mdist) {
+    //   // If it is above me
+    //   if(this.posY < my)
+    //   {
+    //     this.posY -= tmpDy;
+    //   }
+    //   // Else it is below me
+    //   else
+    //   {
+    //     this.posY += tmpDy;
+    //   }
+      
+    //   // If it is on the left
+    //   if(this.posX < mx)
+    //   {
+    //     this.posX -= tmpDx
+    //   }
+    //   // Else it is on the right
+    //   else
+    //   {
+    //     this.posX += tmpDx; 
+    //   }
+    // }
 
     //Ensure that it is not out of bound
     let tmpX = this.posX + this.velX;
@@ -160,6 +215,11 @@ class ParticleEmitter {
   // Not going to square root so going to store the square of length
   sqLength: number = 0;
 
+  // How far the particles is going to move away from the mouse
+  particleDisperseLength: number = 30;
+  sqParticleDisperseLength: number = 0;
+
+
   constructor(_ctx: CanvasRenderingContext2D,_minBoundX: number, _minBoundY: number,
               _maxBoundX: number, _maxBoundY: number) {
                 
@@ -175,7 +235,8 @@ class ParticleEmitter {
 
                 //Calculate the square length
                 this.sqLength = this.particleLineLength * this.particleLineLength;
-
+                this.sqParticleDisperseLength = this.particleDisperseLength * this.particleDisperseLength;
+                
                 //Construct the particle
                 for(let i = 0; i < this.maxParticle; ++i)
                 {
@@ -187,12 +248,12 @@ class ParticleEmitter {
                 
   }
 
-  Update(): void {
+  Update(mx: number, my: number): void {
 
     //Update the particle
     for(let i = 0; i < this.maxParticle; ++i)
     {
-      this.arrParticle[i].Update();
+      this.arrParticle[i].Update(mx, my, this.sqParticleDisperseLength);
     }
   }
 
