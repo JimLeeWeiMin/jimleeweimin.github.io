@@ -97,8 +97,8 @@ class Particle {
                 this.posX = Math.floor(Math.random() * _maxBoundX) + _minBoundX;
                 this.posY = Math.floor(Math.random() * _maxBoundY) + _minBoundY;
 
-                this.velX = (Math.floor(Math.random() * _maxVel) + _minVel) * (Math.floor(Math.random() * 2) ? 1 : -1);
-                this.velY = (Math.floor(Math.random() * _maxVel) + _minVel) * (Math.floor(Math.random() * 2) ? 1 : -1);
+                this.velX = ((Math.random() * _maxVel) + _minVel) * (Math.floor(Math.random() * 2) ? 1 : -1);
+                this.velY = ((Math.random() * _maxVel) + _minVel) * (Math.floor(Math.random() * 2) ? 1 : -1);
 
                 this.minBoundX = _minBoundX;
                 this.minBoundY = _minBoundY;
@@ -145,16 +145,20 @@ class ParticleEmitter {
   maxBoundY: number = 0;
 
   //Stores the min and max velocity of the particle
-  minVelocity: number = 1;
-  maxVelocity: number = 3;
+  minVelocity: number = 0.1;
+  maxVelocity: number = 1;
 
   //Store the min and max size of the particle
   minSize: number = 2;
   maxSize: number = 5;
 
-
   //Stores the canvas
   ctx!: CanvasRenderingContext2D;
+
+  // Stores the length of the line
+  particleLineLength: number = 100;
+  // Not going to square root so going to store the square of length
+  sqLength: number = 0;
 
   constructor(_ctx: CanvasRenderingContext2D,_minBoundX: number, _minBoundY: number,
               _maxBoundX: number, _maxBoundY: number) {
@@ -169,6 +173,9 @@ class ParticleEmitter {
                 this.maxBoundX = _maxBoundX;
                 this.maxBoundY = _maxBoundY;
 
+                //Calculate the square length
+                this.sqLength = this.particleLineLength * this.particleLineLength;
+
                 //Construct the particle
                 for(let i = 0; i < this.maxParticle; ++i)
                 {
@@ -177,6 +184,7 @@ class ParticleEmitter {
                                                       this.minVelocity, this.maxVelocity,
                                                       Math.floor(Math.random() * this.maxSize) + this.minSize));
                 }
+                
   }
 
   Update(): void {
@@ -190,22 +198,47 @@ class ParticleEmitter {
 
   Draw(): void {
 
-    //Clear the canvas
+    // Clear the canvas
     this.ctx.clearRect(this.minBoundX,this.minBoundY, this.maxBoundX, this.maxBoundY);
 
     for(let i = 0; i < this.maxParticle; ++i)
     {
-      
-      //this.ctx.fillRect(this.arrParticle[i].posX, this.arrParticle[i].posY, 10, 10);
-
       this.ctx.beginPath();
-      
       this.ctx.arc( this.arrParticle[i].posX, this.arrParticle[i].posY,
                     this.arrParticle[i].size, 0, 2 * Math.PI);
-
-      this.ctx.fillStyle = 'rgb(200, 0, 0)';
+      this.ctx.fillStyle = 'white';
       this.ctx.fill();
-      //this.ctx.stroke();
+
+      // Draw the lines to each particles
+      for(let j = 0; j < this.maxParticle; ++j)
+      {
+        // If it is myself, skip
+        if(i == j) continue;
+
+        // Calculate the length between two particles
+        let x = this.arrParticle[i].posX - this.arrParticle[j].posX;
+        let y = this.arrParticle[i].posY - this.arrParticle[j].posY;
+        x *= x;
+        y *= y;
+        let d = x+y;
+        
+        //Draw the line if it is equal or less
+        if(d <= this.sqLength)
+        {
+          //Calculate the alpha value
+          let a = String(1 - (d / this.sqLength));
+
+          this.ctx.strokeStyle = 'rgba(255,255,255,' + a +')';
+          this.ctx.lineWidth = 1;
+          this.ctx.beginPath();
+          this.ctx.moveTo(this.arrParticle[i].posX, this.arrParticle[i].posY);
+          this.ctx.lineTo(this.arrParticle[j].posX, this.arrParticle[j].posY);
+          this.ctx.stroke();
+        }
+
+       
+      }
+
 
     }
   }
