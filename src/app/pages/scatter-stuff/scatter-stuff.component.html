@@ -6,10 +6,16 @@
         </div>
         <div class="Pages">
             <div class="PageSelectWrapper">
+                
                 <select [ngModel]="num" (change)="selectOnChange($event)" class="PageSelect"  >
                     <option value="1">2D Particle</option>
                     <option value="2">2D Canvas</option>
                 </select>
+                <div class="ArrowDownWrapper">
+                    <fa-icon [icon]="iconArrowDown"></fa-icon>
+                </div>
+                
+                
             </div>
             <div class="PageNumberWrapper">
                 <button class="ArrowButton" (click)="clickLeftPage()"> < </button>
@@ -23,24 +29,6 @@
     <div class="MyStuffWrapper" [ngSwitch]="num">
         <app-particle-emitter *ngSwitchCase="1" ></app-particle-emitter>
         <app-drawing-canvas *ngSwitchCase="2" ></app-drawing-canvas>
-
-        <!-- <div *ngSwitchCase="1">
-            case 1
-        </div>
-        <div *ngSwitchCase="2">
-            case 2
-        </div> -->
-        
-        <!-- <div *ngSwitchCase=1>
-            <span class="Testclass">Switch Case {{num}}</span>
-            <app-particle-emitter></app-particle-emitter>
-        </div>
-        <div *ngSwitchCase=2>
-            <span class="Testclass">Switch Case 2</span>
-        </div> -->
-
-        <!-- <canvas #canvasEl ></canvas> -->
-        <!-- <button (click)="animate()">Play</button> -->
     </div>
     
 </div>

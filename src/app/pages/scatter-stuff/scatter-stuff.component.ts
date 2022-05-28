@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-scatter-stuff',
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ScatterStuffComponent implements OnInit {
+
+  iconArrowDown = faAngleDown;
 
   num: number = 1;
   currentMax: number = 2;

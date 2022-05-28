@@ -2,5 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
 
+/* FontAwesome */
+@import "~font-awesome/css/font-awesome.css";
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

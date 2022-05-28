@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
@@ -31,6 +33,7 @@ import { DrawingCanvasComponent } from './components/drawing-canvas/drawing-canv
     BrowserAnimationsModule,
     MatIconModule,
     FormsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
