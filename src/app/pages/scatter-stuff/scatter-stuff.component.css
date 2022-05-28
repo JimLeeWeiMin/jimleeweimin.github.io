@@ -46,7 +46,10 @@
     align-items: center;
     justify-content: center;
 
-    top:30%;
+    height: 50%;
+    top: 10%;
+    
+    /* outline: 1px solid rgb(219, 219, 219); */
 }
 
 .PageSelect {
@@ -69,15 +72,9 @@
     appearance: none;
 }
 
-.PageSelect:hover {
-    border: none;
-    
-}
-
 .ArrowDownWrapper {
     position: absolute;
     right: 15%;
-    bottom: 20%;
     color: gray;
 }
 
@@ -99,7 +96,8 @@
     align-items: center;
     justify-content: center;
 
-    top: 50%;
+    height: 50%;
+    bottom:10%;
 
 }
 
