@@ -3,6 +3,30 @@
     background-color: skyblue;
 }
 
+.ColorPickerWrapper {
+    height: 100%;
+    width: 25%;
+    background-color: bisque;
+    display: flex;
+}
+
+.ColorSelected {
+    width: 30%;
+    height: 60%;
+    background-color: aliceblue;
+    position: relative;
+    top: 5%;
+    left: 5%;
+}
+
+.ColorGradientSelector {
+    width:60%;
+    height:60%;
+    background-color: white;
+    position: relative;
+    top: 5%;
+}
+
 .DrawingCanvasWrapper {
     background-color: white;
     width: 100%;

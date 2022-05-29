@@ -1,4 +1,3 @@
-import { BLACK_ON_WHITE_CSS_CLASS } from '@angular/cdk/a11y/high-contrast-mode/high-contrast-mode-detector';
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 
 @Component({
@@ -6,6 +5,7 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angula
   templateUrl: './drawing-canvas.component.html',
   styleUrls: ['./drawing-canvas.component.css']
 })
+
 export class DrawingCanvasComponent implements OnInit {
 
   //Canvas to draw on
@@ -22,9 +22,29 @@ export class DrawingCanvasComponent implements OnInit {
   //Flag to start the drag recording
   private mouseDownFlag = false;
 
+  //Drawing Canvas Color
+  private currentColor: string = "#000000";
+
   //Drawing Canvas Attributes
   private PixelSizeX: number = 5;
   private PixelSizeY: number = 5;
+
+  //Color Palette
+  private ctxColorSelected!: CanvasRenderingContext2D;
+
+  @ViewChild('divCanvasColorSelected')
+  private myDivCanvasColorSelected: ElementRef = {} as ElementRef;
+
+  @ViewChild('canvasColorSelected')
+  private myCanvasColorSelected: ElementRef = {} as ElementRef;
+
+  private ctxColorGradientSelected!: CanvasRenderingContext2D;
+
+  @ViewChild('divCanvasColorGradientSelector')
+  private myDivCanvasColorGradientSelected: ElementRef = {} as ElementRef;
+
+  @ViewChild('canvasColorGradientSelector')
+  private myCanvasColorGradientSelected: ElementRef = {} as ElementRef;
 
   constructor() { }
 
@@ -32,16 +52,32 @@ export class DrawingCanvasComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+    // Canvas
     this.ctx = this.canvasEl.nativeElement.getContext('2d');
 
-    //Fit to div
-    this.ctx.canvas.style.width = '100%';
-    this.ctx.canvas.style.height = '100%';
-    this.ctx.canvas.width = this.myIdentifer.nativeElement.offsetWidth;
-    this.ctx.canvas.height = this.myIdentifer.nativeElement.offsetHeight;
+    this.resizeToFit(this.ctx, this.myIdentifer);
 
-    //Set the color to black as default
-    this.ctx.fillStyle = "#000000";
+    // Set the color to black as default
+    this.ctx.fillStyle = this.currentColor;
+
+    // Color Picker
+    this.ctxColorSelected = this.myCanvasColorSelected.nativeElement.getContext('2d');
+    this.ctxColorGradientSelected = this.myCanvasColorGradientSelected.nativeElement.getContext('2d');
+
+    this.resizeToFit(this.ctxColorSelected, this.myDivCanvasColorSelected);
+    this.resizeToFit(this.ctxColorGradientSelected, this.myDivCanvasColorGradientSelected);
+
+    // Draw current selected color
+    this.ctxColorSelected.fillStyle = this.currentColor;
+    this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
+  }
+
+  resizeToFit(_ctx: CanvasRenderingContext2D, _DivCtx: ElementRef<HTMLInputElement>): void {
+    _ctx.canvas.style.width = '100%';
+    _ctx.canvas.style.height = '100%';
+
+    _ctx.canvas.width = _DivCtx.nativeElement.offsetWidth;
+    _ctx.canvas.height = _DivCtx.nativeElement.offsetHeight;
   }
 
   mouseDown(evt: MouseEvent): void {
@@ -57,6 +93,7 @@ export class DrawingCanvasComponent implements OnInit {
 
   mouseUp(evt: MouseEvent): void {
     this.mouseDownFlag = false;
+    this.Draw(evt.offsetX, evt.offsetY);
   }
 
   Draw(_x: number, _y: number):void {
