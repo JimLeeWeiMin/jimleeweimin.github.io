@@ -1,4 +1,4 @@
-<div class="DrawingCanvasWrapper">
-    <p>drawing-canvas works!</p>
+<div (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" class="DrawingCanvasWrapper" #MyDivCanvas>
+    <canvas #canvasEl></canvas>
 </div>
 

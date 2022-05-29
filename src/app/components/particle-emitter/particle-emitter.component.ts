@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, NgZone } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-particle-emitter',
@@ -24,15 +24,11 @@ export class ParticleEmitterComponent implements AfterViewInit {
   //Stores the handle for animation frame
   private animationFrameHandler!: number;
 
-  //Stores the lastTime to calculate deltaTime
-  private lastTime: number | null;
-
   //Stores mouse position
   private mosX : number = 0;
   private mosY : number = 0;
 
-  constructor(private _ngZone: NgZone) {
-    this.lastTime = null;
+  constructor() {
   }
 
   ngAfterViewInit(): void {
