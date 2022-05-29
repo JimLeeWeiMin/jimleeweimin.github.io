@@ -1,4 +1,8 @@
-<div (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" class="DrawingCanvasWrapper" #MyDivCanvas>
+<div class="CanvasButtons">
+
+</div>
+
+<div (touchstart)="mouseDown" (touchend)="mouseUp" (touchmove)="mouseMove" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" class="DrawingCanvasWrapper" #MyDivCanvas>
     <canvas #canvasEl></canvas>
 </div>
 
