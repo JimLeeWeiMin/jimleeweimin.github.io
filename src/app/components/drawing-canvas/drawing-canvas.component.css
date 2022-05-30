@@ -1,11 +1,11 @@
 .CanvasButtons {
-    height: 20%;
+    height: 30%;
     background-color: skyblue;
 }
 
 .ColorPickerWrapper {
     height: 100%;
-    width: 25%;
+    width: 40%;
     background-color: bisque;
     display: flex;
 }
@@ -20,11 +20,14 @@
 }
 
 .ColorGradientSelector {
-    width:60%;
+    width:45%;
     height:60%;
-    background-color: white;
+    background-color: skyblue;
+    /* background-color: conic-gradient( rgb(255,0,0), rgb(255,125,0) ); */
+    /* background-image: conic-gradient( rgb(255,0,0), rgb(255,125,0), rgb(255,255,0), rgb(125,255,0), rgb(0,255,0), rgb(0,255,125) , rgb(0,255,255), rgb(0,125,255), rgb(0,0,255), rgb(125,0,255), rgb(255,0,255), rgb(255,0,125), rgb(255,0,0) );; */
     position: relative;
     top: 5%;
+    left: 5%;
 }
 
 .DrawingCanvasWrapper {
