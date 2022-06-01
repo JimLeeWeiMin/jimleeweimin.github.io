@@ -1,7 +1,21 @@
 <div class="CanvasButtons">
     <div class="ColorPickerWrapper">
-        <div class="ColorSelected" #divCanvasColorSelected><canvas #canvasColorSelected></canvas></div>
-        <div (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)"  class="ColorGradientSelector" #divCanvasColorGradientSelector><canvas #canvasColorGradientSelector></canvas></div>
+        <div class="ColorPickerTopWrapper">
+            <div class="ColorSelected" #divCanvasColorSelected>
+                <canvas #canvasColorSelected></canvas>
+            </div>
+            <div (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)"  class="ColorGradientSelector" #divCanvasColorGradientSelector>
+                <canvas #canvasColorGradientSelector></canvas>
+            </div>
+        </div>
+        <div class="ColorPickerBtmWrapper">
+            <div (mousedown)="grayPickerDown($event)" (mouseup)="grayPickerUp($event)" (mousemove)="grayPickerMove($event)" class="GrayGradient" #divCanvasGrayGradient>
+                <canvas #canvasGrayGradient></canvas>
+            </div>
+        </div>
+
+        
+        
     </div>
 </div>
 <div (touchstart)="mouseDown" (touchend)="mouseUp" (touchmove)="mouseMove" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" class="DrawingCanvasWrapper" #MyDivCanvas>
