@@ -1,4 +1,4 @@
-<div class="CanvasButtons">
+<div class="ToolBarWrapper">
     <div class="ColorPickerWrapper">
         <div class="ColorPickerTopWrapper">
             <div class="ColorSelected" #divCanvasColorSelected>
@@ -12,11 +12,10 @@
             <div (mousedown)="multiColorPickerDown($event)" (mouseup)="multiColorPickerUp($event)" (mousemove)="multiColorPickerMove($event)" class="MultiColor" #divCanvasMultiColor>
                 <canvas #canvasMultiColor></canvas>
             </div>
-        </div>
-
-        
-        
+        </div>    
     </div>
+
+    <button class="ClearCanvas" (click)="ClearCanvas()">Clear</button>
 </div>
 <div (touchstart)="mouseDown" (touchend)="mouseUp" (touchmove)="mouseMove" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" class="DrawingCanvasWrapper" #MyDivCanvas>
     <canvas #canvasEl></canvas>

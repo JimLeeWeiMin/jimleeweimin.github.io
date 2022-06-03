@@ -8,6 +8,9 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angula
 
 export class DrawingCanvasComponent implements OnInit {
 
+  // The paper to draw on
+  private paperCtx!: CanvasRenderingContext2D;
+
   // Canvas to draw on
   private ctx!: CanvasRenderingContext2D;
 
@@ -132,6 +135,12 @@ export class DrawingCanvasComponent implements OnInit {
     return _ctx;
   }
 
+  ClearCanvas(): void {
+    this.ctx.fillStyle = "rgb(255,255,255)";
+    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    this.ctx.fillStyle = this.currentColor;
+  }
+
   multiColorPickerDown(evt: MouseEvent): void {
     let c:Uint8ClampedArray = this.ctxMultiColor.getImageData(evt.offsetX, evt.offsetY, 1, 1).data;
     this.mouseDownGrayFlag = true;
@@ -217,6 +226,7 @@ export class DrawingCanvasComponent implements OnInit {
     // Get the current color
     this.ctxColorSelected.fillStyle = "rgba("+c[0]+","+c[1]+","+c[2]+","+c[3]+")";
     this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+    this.currentColor = this.ctxColorSelected.fillStyle;
 
     // Change the color selected
     this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
