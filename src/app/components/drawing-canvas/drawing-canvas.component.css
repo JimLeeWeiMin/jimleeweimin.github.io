@@ -7,54 +7,90 @@
     border-color: rgb(71, 71, 71);
 }
 
+.ToolTipWrapper {
+    height: 25%;
+    background-color: coral;
+}
+
 .ClearCanvas {
     float: right;
 }
 
 .ColorPickerWrapper {
-    height: 60%;
-    width: 20%;
-    background-color: bisque;
-    display: flex;
-    flex-direction: column;
-
-    position: relative;
-    top: 5%;
-}
-
-.ColorPickerTopWrapper {
-    height: 70%;
-    width: 100%;
+    height: 75%;
+    width: 40%;
+    /* background-color: bisque; */
     display: flex;
     flex-direction: row;
+
+    position: relative;
 }
 
-.ColorPickerBtmWrapper {
-    height: 30%;
-    width: 100%;
+.SwatchesFont {
+    background: coral;
 
+    width: 45%;
+    height: 20%;
+}
+
+.SwatchesFront {
+    background-color: white;
+    width: 20%;
+    height: 45%;
+
+    position: absolute;
+    left: 10%;
+    top: 30%;
+
+    z-index: 2;
+
+    border: solid;
+    border-color: black;
+}
+
+.SwatchesBack {
+    background-color: black;
+    width: 20%;
+    height: 45%;
+
+    position: relative;
+    left: 5%;
+    top: 15%;
+
+    z-index: 1;
+
+    border: solid;
+    border-color: rgb(233, 233, 233);
+}
+
+.ColorGradient {
+    height: 80%;
+    width: 45%;
+
+    position: relative;
+    top: 10%;
+    left: 15%;
+
+    /* background-color: orange; */
+
+    border: solid;
+    border-color: rgb(233, 233, 233);
+}
+
+.MultiColor {
     /* background-color: cyan; */
+    
+    width:5%;
+    height:80%;
+
+    position: relative;
+    top: 10%;
+    left: 20%;
+
+    border: solid;
+    border-color: rgb(233, 233, 233);
 }
 
-.ColorSelected {
-    width: 30%;
-    height: 90%;
-    background-color: aliceblue;
-    position: relative;
-    top: 5%;
-    left: 5%;
-}
-
-.ColorGradientSelector {
-    width:60%;
-    height:90%;
-    background-color: skyblue;
-    /* background-color: conic-gradient( rgb(255,0,0), rgb(255,125,0) ); */
-    /* background-image: conic-gradient( rgb(255,0,0), rgb(255,125,0), rgb(255,255,0), rgb(125,255,0), rgb(0,255,0), rgb(0,255,125) , rgb(0,255,255), rgb(0,125,255), rgb(0,0,255), rgb(125,0,255), rgb(255,0,255), rgb(255,0,125), rgb(255,0,0) );; */
-    position: relative;
-    top: 5%;
-    left: 5%;
-}
 
 .DrawingCanvasWrapper {
     background-color: white;
@@ -62,14 +98,5 @@
     height: 80%;
 }
 
-.MultiColor {
-    background-color: cyan;
-    
-    width:90%;
-    height:60%;
 
-    position: relative;
-    top: 15%;
-    left: 5%;
-}
 

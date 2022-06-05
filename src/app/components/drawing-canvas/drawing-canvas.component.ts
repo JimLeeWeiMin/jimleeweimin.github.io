@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-drawing-canvas',
@@ -31,6 +32,7 @@ export class DrawingCanvasComponent implements OnInit {
 
   // Drawing Canvas Color
   private currentColor: string = "rgb(255,0,0)";
+  private prevColor: string = "rgb(255,0,0)";
 
   // Drawing Canvas Attributes
   private PixelSizeX: number = 25;
@@ -70,6 +72,33 @@ export class DrawingCanvasComponent implements OnInit {
   @ViewChild('canvasMultiColor')
   private myCanvasMultiColor: ElementRef = {} as ElementRef;
 
+  @ViewChild('divSwatchesBack')
+  private mySwatchesBack: ElementRef = {} as ElementRef;
+
+  @HostListener('document:keypress', ['$event'])
+  HandleKeyBoardEvent(evt: KeyboardEvent) {
+
+    //Swap the swatches
+    if(evt.key === 'x')
+    {
+      // Grab the previous color
+      this.prevColor = this.currentColor;
+      // Set the current color
+      this.currentColor = getComputedStyle(this.mySwatchesBack.nativeElement).backgroundColor;
+
+      // Draw the SwatchesBack color
+      this.mySwatchesBack.nativeElement.style.backgroundColor = this.prevColor;
+
+      // Draw the SwatchesFront color
+      this.ctxColorSelected.fillStyle = this.currentColor;
+      this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
+    
+      // Set current color
+      this.ctx.fillStyle = this.currentColor;
+    }
+
+  }
+
   constructor() { }
 
   ngOnInit(): void {
@@ -95,7 +124,7 @@ export class DrawingCanvasComponent implements OnInit {
     this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
 
     // Color the multi color
-    let grad = this.ctxMultiColor.createLinearGradient(0, this.ctxMultiColor.canvas.height/2, this.ctxMultiColor.canvas.width, this.ctxMultiColor.canvas.height/2);
+    let grad = this.ctxMultiColor.createLinearGradient(this.ctxMultiColor.canvas.width/2, 0, this.ctxMultiColor.canvas.width/2, this.ctxMultiColor.canvas.height);
     grad.addColorStop(0, "rgb(255,0,0)");
     grad.addColorStop(1/12, "rgb(255,125,0)");
     grad.addColorStop(2/12, "rgb(255,255,0)");

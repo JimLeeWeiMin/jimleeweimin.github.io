@@ -1,23 +1,28 @@
 <div class="ToolBarWrapper">
+    <div class="ToolTipWrapper">
+        <!-- <div class="SwatchesFont">
+
+        </div> -->
+    </div>
+    
     <div class="ColorPickerWrapper">
-        <div class="ColorPickerTopWrapper">
-            <div class="ColorSelected" #divCanvasColorSelected>
-                <canvas #canvasColorSelected></canvas>
-            </div>
-            <div (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)"  class="ColorGradientSelector" #divCanvasColorGradientSelector>
-                <canvas #canvasColorGradientSelector></canvas>
-            </div>
+        <div class="SwatchesFront" #divCanvasColorSelected>
+            <canvas #canvasColorSelected></canvas>
         </div>
-        <div class="ColorPickerBtmWrapper">
-            <div (mousedown)="multiColorPickerDown($event)" (mouseup)="multiColorPickerUp($event)" (mousemove)="multiColorPickerMove($event)" class="MultiColor" #divCanvasMultiColor>
-                <canvas #canvasMultiColor></canvas>
-            </div>
-        </div>    
+        <div class="SwatchesBack" #divSwatchesBack>
+
+        </div>
+        <div class="ColorGradient" #divCanvasColorGradientSelector (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)">
+            <canvas #canvasColorGradientSelector></canvas>
+        </div>
+        <div class="MultiColor" #divCanvasMultiColor (mousedown)="multiColorPickerDown($event)" (mouseup)="multiColorPickerUp($event)" (mousemove)="multiColorPickerMove($event)">
+            <canvas #canvasMultiColor></canvas>
+        </div>
     </div>
 
-    <button class="ClearCanvas" (click)="ClearCanvas()">Clear</button>
+    <!-- <button class="ClearCanvas" (click)="ClearCanvas()">Clear</button> -->
 </div>
-<div (touchstart)="mouseDown" (touchend)="mouseUp" (touchmove)="mouseMove" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" class="DrawingCanvasWrapper" #MyDivCanvas>
+<div class="DrawingCanvasWrapper" #MyDivCanvas (touchstart)="mouseDown" (touchend)="mouseUp" (touchmove)="mouseMove" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)">
     <canvas #canvasEl></canvas>
 </div>
 
