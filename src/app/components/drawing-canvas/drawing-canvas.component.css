@@ -1,23 +1,50 @@
 .ToolBarWrapper {
     height: 30%;
-    background-color: rgb(42, 42, 43);
-
-    
-    border-style: solid;
-    border-color: rgb(71, 71, 71);
+    background-color: rgb(42, 42, 42);    
 }
 
 .ToolTipWrapper {
-    height: 25%;
-    background-color: coral;
+    height: 20%;
+    /* background-color: coral; */
+    /* background-color: rgb(44, 44, 44); */
+    /* background-color: rgb(54, 54, 54); */
 }
+
+.SwatchesTitle {
+    width: 12%;
+    height: 80%;
+
+    /* background-color: blueviolet; */
+    position: relative;
+
+    top: 20%;
+    left: 1%;
+
+    text-align: center;
+
+    
+}
+
+.SwatchesTitle a {
+    /* font-family: 'Tangerine', cursive; */
+    font-size: 30px;
+    font-weight: bold;
+    color:white;
+    /* text-decoration: underline;
+    text-decoration-thickness: 1px; */
+
+    display: inline-block;
+    margin-top: 10%;
+}
+
+
 
 .ClearCanvas {
     float: right;
 }
 
 .ColorPickerWrapper {
-    height: 75%;
+    height: 80%;
     width: 40%;
     /* background-color: bisque; */
     display: flex;

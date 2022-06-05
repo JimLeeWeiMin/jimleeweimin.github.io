@@ -1,8 +1,12 @@
-<div class="ToolBarWrapper">
-    <div class="ToolTipWrapper">
-        <!-- <div class="SwatchesFont">
 
-        </div> -->
+    <!-- <div class="SwatchesFont">
+
+    </div> -->
+
+<div class="ToolBarWrapper">
+    
+    <div class="ToolTipWrapper">
+        <div class="SwatchesTitle"><a>Swatches</a></div>
     </div>
     
     <div class="ColorPickerWrapper">
@@ -20,8 +24,8 @@
         </div>
     </div>
 
-    <button class="ClearCanvas" (click)="ClearCanvas()">Clear</button>
-    <button class="SaveCanvas" (click)="DownloadCanvas()">Download</button>
+    <!-- <button class="ClearCanvas" (click)="ClearCanvas()">Clear</button> -->
+    <!-- <button class="SaveCanvas" (click)="DownloadCanvas()">Download</button> -->
 </div>
 <div class="DrawingCanvasWrapper" #MyDivCanvas (touchstart)="mouseDown" (touchend)="mouseUp" (touchmove)="mouseMove" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)">
     <canvas #canvasEl></canvas>

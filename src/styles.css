@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&family=Tangerine:wght@700&display=swap');
 
 /* FontAwesome */
 @import "~font-awesome/css/font-awesome.css";
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {  margin: 0; font-family: 'Roboto', "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Open Sans', sans-serif; }
+body { margin: 0; font-family: 'Tangerine', cursive; }

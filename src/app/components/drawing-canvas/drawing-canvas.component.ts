@@ -349,6 +349,9 @@ export class DrawingCanvasComponent implements OnInit {
   }
 
   Draw(_x: number, _y: number):void {
-    this.ctx.fillRect(_x, _y, this.PixelSizeX, this.PixelSizeY);
+    // this.ctx.fillRect(_x, _y, this.PixelSizeX, this.PixelSizeY);
+    this.ctx.beginPath();
+    this.ctx.arc(_x, _y, this.PixelSizeX, 0, 2 * Math.PI);
+    this.ctx.fill();
   }
 }
