@@ -8,10 +8,6 @@ import { HostListener } from '@angular/core';
 })
 
 export class DrawingCanvasComponent implements OnInit {
-
-  // The paper to draw on
-  private paperCtx!: CanvasRenderingContext2D;
-
   // Canvas to draw on
   private ctx!: CanvasRenderingContext2D;
 
@@ -170,6 +166,17 @@ export class DrawingCanvasComponent implements OnInit {
     _ctx = _targetCanvas.nativeElement.getContext('2d');
     this.resizeToFit(_ctx, _targetDiv);
     return _ctx;
+  }
+
+  DownloadCanvas(): void {
+    var canvasDataUrl = this.ctx.canvas.toDataURL().replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+    var link = document.createElement('a');
+
+    link.setAttribute('href', canvasDataUrl);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('download', "newImage.png");
+
+    link.click();
   }
 
   ClearCanvas(): void {
