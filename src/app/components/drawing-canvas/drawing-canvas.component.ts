@@ -36,6 +36,10 @@ export class DrawingCanvasComponent implements OnInit {
   private PixelSizeX: number = 25;
   private PixelSizeY: number = 25;
 
+  // Record last picking for the case where user select the multi color
+  private lastX: number = 0;
+  private lastY: number = 0;
+
   // Color Selected
   private ctxColorSelected!: CanvasRenderingContext2D;
 
@@ -124,6 +128,10 @@ export class DrawingCanvasComponent implements OnInit {
     // Draw the colors
     this.ctxColorGradientSelector.fillStyle = this.myGradientColor;
     this.ctxColorGradientSelector.fillRect(0,0, tX, tY);
+
+    // Set the last picking
+    this.lastX = this.ctxColorGradientSelector.canvas.width / 2;
+    this.lastY = this.ctxColorGradientSelector.canvas.height / 2;
   }
 
   InitCanvas( _ctx: CanvasRenderingContext2D,
@@ -156,6 +164,16 @@ export class DrawingCanvasComponent implements OnInit {
 
     this.ctxColorGradientSelector.fillStyle = this.myGradientColor;
     this.ctxColorGradientSelector.fillRect(0,0, this.ctxColorGradientSelector.canvas.width, this.ctxColorGradientSelector.canvas.height);
+    
+    // Set the color gradient
+    let tc:Uint8ClampedArray = this.ctxColorGradientSelector.getImageData(this.lastX, this.lastY, 1, 1).data;
+
+    // Get the current color
+    this.ctxColorSelected.fillStyle = "rgba("+tc[0]+","+tc[1]+","+tc[2]+","+tc[3]+")";
+    this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+
+    // Change the color selected
+    this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
   }
 
   multiColorPickerMove(evt: MouseEvent): void {
@@ -163,17 +181,27 @@ export class DrawingCanvasComponent implements OnInit {
     {
       let c:Uint8ClampedArray = this.ctxMultiColor.getImageData(evt.offsetX, evt.offsetY, 1, 1).data;
 
-    // Get the current color
-    this.ctxMultiColor.fillStyle = "rgba("+c[0]+","+c[1]+","+c[2]+","+c[3]+")";
-    this.myGradientColor = this.ctxColorGradientSelector.createLinearGradient(0, this.ctxColorGradientSelector.canvas.height/2, this.ctxColorGradientSelector.canvas.width, this.ctxColorGradientSelector.canvas.height/2);
+      // Get the current color
+      this.ctxMultiColor.fillStyle = "rgba("+c[0]+","+c[1]+","+c[2]+","+c[3]+")";
+      this.myGradientColor = this.ctxColorGradientSelector.createLinearGradient(0, this.ctxColorGradientSelector.canvas.height/2, this.ctxColorGradientSelector.canvas.width, this.ctxColorGradientSelector.canvas.height/2);
 
-    //Add two color
-    this.myGradientColor.addColorStop(0, "rgb(255,255,255)");
-    this.myGradientColor.addColorStop(0.5, "rgba("+c[0]+","+c[1]+","+c[2]+","+c[3]+")");
-    this.myGradientColor.addColorStop(1, "rgb(0,0,0)");
+      //Add two color
+      this.myGradientColor.addColorStop(0, "rgb(255,255,255)");
+      this.myGradientColor.addColorStop(0.5, "rgba("+c[0]+","+c[1]+","+c[2]+","+c[3]+")");
+      this.myGradientColor.addColorStop(1, "rgb(0,0,0)");
 
-    this.ctxColorGradientSelector.fillStyle = this.myGradientColor;
-    this.ctxColorGradientSelector.fillRect(0,0, this.ctxColorGradientSelector.canvas.width, this.ctxColorGradientSelector.canvas.height);
+      this.ctxColorGradientSelector.fillStyle = this.myGradientColor;
+      this.ctxColorGradientSelector.fillRect(0,0, this.ctxColorGradientSelector.canvas.width, this.ctxColorGradientSelector.canvas.height);
+
+      // Set the color gradient
+      let tc:Uint8ClampedArray = this.ctxColorGradientSelector.getImageData(this.lastX, this.lastY, 1, 1).data;
+
+      // Get the current color
+      this.ctxColorSelected.fillStyle = "rgba("+tc[0]+","+tc[1]+","+tc[2]+","+tc[3]+")";
+      this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+
+      // Change the color selected
+      this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
     }
 
     
@@ -195,6 +223,16 @@ export class DrawingCanvasComponent implements OnInit {
 
     this.ctxColorGradientSelector.fillStyle = this.myGradientColor;
     this.ctxColorGradientSelector.fillRect(0,0, this.ctxColorGradientSelector.canvas.width, this.ctxColorGradientSelector.canvas.height);
+
+    // Set the color gradient
+    let tc:Uint8ClampedArray = this.ctxColorGradientSelector.getImageData(this.lastX, this.lastY, 1, 1).data;
+
+    // Get the current color
+    this.ctxColorSelected.fillStyle = "rgba("+tc[0]+","+tc[1]+","+tc[2]+","+tc[3]+")";
+    this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+
+    // Change the color selected
+    this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
   }
 
   resizeToFit(_ctx: CanvasRenderingContext2D, _DivCtx: ElementRef<HTMLInputElement>): void {
@@ -207,6 +245,10 @@ export class DrawingCanvasComponent implements OnInit {
 
   colorPickerDown(evt: MouseEvent): void {
     let c:Uint8ClampedArray = this.ctxColorGradientSelector.getImageData(evt.offsetX, evt.offsetY, 1, 1).data;
+
+    //Set the last x and y
+    this.lastX = evt.offsetX;
+    this.lastY = evt.offsetY;
     
     this.mouseDownCPFlag = true;
 
@@ -221,6 +263,10 @@ export class DrawingCanvasComponent implements OnInit {
   colorPickerUp(evt: MouseEvent): void {
     let c:Uint8ClampedArray = this.ctxColorGradientSelector.getImageData(evt.offsetX, evt.offsetY, 1, 1).data;
     
+    //Set the last x and y
+    this.lastX = evt.offsetX;
+    this.lastY = evt.offsetY;
+
     this.mouseDownCPFlag = false;
 
     // Get the current color
@@ -236,6 +282,10 @@ export class DrawingCanvasComponent implements OnInit {
 
     if(this.mouseDownCPFlag) {
       let c:Uint8ClampedArray = this.ctxColorGradientSelector.getImageData(evt.offsetX, evt.offsetY, 1, 1).data;
+
+      //Set the last x and y
+      this.lastX = evt.offsetX;
+      this.lastY = evt.offsetY;
 
       // Get the current color
       this.ctxColorSelected.fillStyle = "rgba("+c[0]+","+c[1]+","+c[2]+","+c[3]+")";
