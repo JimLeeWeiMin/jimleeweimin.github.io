@@ -6,26 +6,46 @@
 <div class="ToolBarWrapper">
     
     <div class="ToolTipWrapper">
-        <div class="SwatchesTitle"><a>Swatches</a></div>
+        <div class="ToolNameSwatches"><a>Swatches</a></div>
+        <div class="ToolNameColorGradient"><a>Color Gradient</a></div>
+        <div class="ToolNameMultiColor"><a>Color</a></div>
+        <div class="ToolNameTool"><a>Tools</a></div>
     </div>
     
-    <div class="ColorPickerWrapper">
-        <div class="SwatchesFront" #divCanvasColorSelected>
-            <canvas #canvasColorSelected></canvas>
-        </div>
-        <div class="SwatchesBack" #divSwatchesBack>
+    
 
+    <div class="AllToolsWrapper">
+        
+        <div class="ColorPickerWrapper">
+            <div class="SwatchesFront" #divCanvasColorSelected>
+                <canvas #canvasColorSelected></canvas>
+            </div>
+            <div class="SwatchesBack" #divSwatchesBack>
+            </div>
+            <div class="ColorGradient" #divCanvasColorGradientSelector (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)">
+                <canvas #canvasColorGradientSelector></canvas>
+            </div>
+            <div class="MultiColor" #divCanvasMultiColor (mousedown)="multiColorPickerDown($event)" (mouseup)="multiColorPickerUp($event)" (mousemove)="multiColorPickerMove($event)">
+                <canvas #canvasMultiColor></canvas>
+            </div>
         </div>
-        <div class="ColorGradient" #divCanvasColorGradientSelector (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)">
-            <canvas #canvasColorGradientSelector></canvas>
+
+        <div class="FileWrapper">
+            <div class="FileTitleLineWrapper">
+                <div class="FileTitleLine"><hr></div>
+                <div class="FileTitleText">File</div>
+                <div class="FileTitleLine"><hr></div>
+            </div>
+            <div class="ClearCanvasButtonWrapper">
+                <button class="ClearCanvasButton" (click)="ClearCanvas()">Clear</button>
+            </div>
+            <div class="DownloadCanvasButtonWrapper">
+                <button class="SaveCanvasButton" (click)="DownloadCanvas()">Download</button>
+            </div>
         </div>
-        <div class="MultiColor" #divCanvasMultiColor (mousedown)="multiColorPickerDown($event)" (mouseup)="multiColorPickerUp($event)" (mousemove)="multiColorPickerMove($event)">
-            <canvas #canvasMultiColor></canvas>
-        </div>
+
     </div>
 
-    <!-- <button class="ClearCanvas" (click)="ClearCanvas()">Clear</button> -->
-    <!-- <button class="SaveCanvas" (click)="DownloadCanvas()">Download</button> -->
 </div>
 <div class="DrawingCanvasWrapper" #MyDivCanvas (touchstart)="mouseDown" (touchend)="mouseUp" (touchmove)="mouseMove" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)">
     <canvas #canvasEl></canvas>
