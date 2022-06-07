@@ -1,7 +1,8 @@
+<div class="CursorTypes">
+    <div class="BrushPointer" #BrushPointer>
+    </div>
+</div>
 
-    <!-- <div class="SwatchesFont">
-
-    </div> -->
 
 <div class="ToolBarWrapper">
     
@@ -12,8 +13,6 @@
         <div class="ToolNameTool"><a>Tools</a></div>
     </div>
     
-    
-
     <div class="AllToolsWrapper">
         
         <div class="ColorPickerWrapper">
@@ -47,7 +46,7 @@
     </div>
 
 </div>
-<div class="DrawingCanvasWrapper" #MyDivCanvas (touchstart)="mouseDown" (touchend)="mouseUp" (touchmove)="mouseMove" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)">
+<div class="DrawingCanvasWrapper" #MyDivCanvas (mouseleave)="mouseLeave($event)" (mouseenter)="mouseEnter($event)" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)">
     <canvas #canvasEl></canvas>
 </div>
 

@@ -1,3 +1,24 @@
+.BrushPointer {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    transform:translate(-50%, -50%);
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid black;
+    display:inline;
+
+    color:transparent;
+
+    top: 0;
+    left: 0;
+
+    pointer-events: none;
+
+    z-index: 1000;
+}
+
 .AllToolsWrapper {
     width: 100%;
     height: 100%;
@@ -21,7 +42,7 @@
     width: 12%;
     height: 80%;
 
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     position: relative;
 
     top: 20%;
@@ -44,7 +65,7 @@
     width: 18%;
     height: 80%;
 
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     position: relative;
 
     top: 20%;
@@ -68,7 +89,7 @@
     width: 5%;
     height: 80%;
 
-    background-color: blue;
+    /* background-color: blue; */
     position: relative;
 
     top: 20%;
@@ -94,7 +115,7 @@
     width: 5%;
     height: 80%;
 
-    background-color: blue;
+    /* background-color: blue; */
     position: relative;
 
     top: 20%;
@@ -328,6 +349,8 @@
     background-color: white;
     width: 100%;
     height: 80%;
+
+    /* cursor: url('/assets/images/circleCursor.png'), auto; */
 }
 
 

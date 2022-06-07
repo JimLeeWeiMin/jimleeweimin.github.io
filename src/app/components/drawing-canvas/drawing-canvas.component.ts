@@ -31,8 +31,8 @@ export class DrawingCanvasComponent implements OnInit {
   private prevColor: string = "rgb(255,0,0)";
 
   // Drawing Canvas Attributes
-  private PixelSizeX: number = 25;
-  private PixelSizeY: number = 25;
+  private PixelSizeX: number = 10;
+  private PixelSizeY: number = 10;
 
   // Record last picking for the case where user select the multi color
   private lastX: number = 0;
@@ -61,7 +61,6 @@ export class DrawingCanvasComponent implements OnInit {
   
   private myGradientColor!: CanvasGradient;
   
-
   @ViewChild('divCanvasMultiColor')
   private myDivCanvasMultiColor: ElementRef = {} as ElementRef;
 
@@ -70,6 +69,10 @@ export class DrawingCanvasComponent implements OnInit {
 
   @ViewChild('divSwatchesBack')
   private mySwatchesBack: ElementRef = {} as ElementRef;
+
+  // Look for mouse cursor
+  @ViewChild('BrushPointer')
+  private myBrushPointer: ElementRef = {} as ElementRef;
 
   @HostListener('document:keypress', ['$event'])
   HandleKeyBoardEvent(evt: KeyboardEvent) {
@@ -332,6 +335,26 @@ export class DrawingCanvasComponent implements OnInit {
     }
   }
 
+  mouseLeave(evt: MouseEvent): void {
+    // Set mouse cursor back to normal
+    document.body.style.cursor = "none";
+
+    // Set the custom cursor visibilty to hidden
+    this.myBrushPointer.nativeElement.style.display = "none";
+  }
+
+  mouseEnter(evt: MouseEvent): void {
+    // Set mouse cursor to none
+    document.body.style.cursor = "none";
+
+    // Set the custom cursor visibilty to hidden
+    this.myBrushPointer.nativeElement.style.display = "inline";
+
+    // Set the size of the custom cursor
+    this.myBrushPointer.nativeElement.style.height = String(this.PixelSizeX*2) + "px";
+    this.myBrushPointer.nativeElement.style.width = String(this.PixelSizeX*2) + "px"; 
+  }
+
   mouseDown(evt: MouseEvent): void {
     this.mouseDownFlag = true;
     this.Draw(evt.offsetX, evt.offsetY);
@@ -341,6 +364,10 @@ export class DrawingCanvasComponent implements OnInit {
     if(this.mouseDownFlag) {
       this.Draw(evt.offsetX, evt.offsetY);
     }
+
+    // Get the div to follow the mouse
+    this.myBrushPointer.nativeElement.style.left = String(evt.offsetX) + "px";
+    this.myBrushPointer.nativeElement.style.top = String(evt.y) + "px";
   }
 
   mouseUp(evt: MouseEvent): void {
@@ -349,7 +376,6 @@ export class DrawingCanvasComponent implements OnInit {
   }
 
   Draw(_x: number, _y: number):void {
-    // this.ctx.fillRect(_x, _y, this.PixelSizeX, this.PixelSizeY);
     this.ctx.beginPath();
     this.ctx.arc(_x, _y, this.PixelSizeX, 0, 2 * Math.PI);
     this.ctx.fill();
