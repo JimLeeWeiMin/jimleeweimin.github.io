@@ -337,7 +337,7 @@ export class DrawingCanvasComponent implements OnInit {
 
   mouseLeave(evt: MouseEvent): void {
     // Set mouse cursor back to normal
-    document.body.style.cursor = "none";
+    document.body.style.cursor = "auto";
 
     // Set the custom cursor visibilty to hidden
     this.myBrushPointer.nativeElement.style.display = "none";
