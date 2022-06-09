@@ -3,11 +3,9 @@
     height: 200px;
     width: 200px;
     transform:translate(-50%, -50%);
-    height: 50px;
-    width: 50px;
     border-radius: 50%;
     border: 2px solid black;
-    display:inline;
+    display:none;
 
     color:transparent;
 
@@ -36,6 +34,10 @@
     height: 20%;
     display: flex;
     flex-direction: row;
+
+    font-size: 25px;
+    color:white;
+    font-weight: 400;
 }
 
 .ToolNameSwatches {
@@ -48,17 +50,12 @@
     top: 20%;
     left: 1%;
 
-    text-align: center;  
+    text-align: center;
 }
 
-.ToolNameSwatches a {
-    font-size: 30px;
-    color:white;
-
+.ToolNameSwatches a { 
     position: relative;
     top: 30%;
-
-    font-weight: 400;
 }
 
 .ToolNameColorGradient {
@@ -76,13 +73,8 @@
 }
 
 .ToolNameColorGradient a {
-    font-size: 30px;
-    color:white;
-
     position: relative;
     top: 30%;
-    
-    font-weight: 400;
 }
 
 .ToolNameMultiColor {
@@ -93,22 +85,15 @@
     position: relative;
 
     top: 20%;
-    left: 4%;
+    left: 3.5%;
 
     text-align: center;  
     
 }
 
 .ToolNameMultiColor a {
-    font-size: 30px;
-    color:white;
-
     position: relative;
     top: 30%;
-    
-    font-weight: 400;
-
-    word-wrap: break-word;
 }
 
 .ToolNameTool {
@@ -126,20 +111,93 @@
 }
 
 .ToolNameTool a {
-    font-size: 30px;
-    color:white;
-
     position: relative;
     top: 30%;
-    
-    font-weight: 400;
-
-    word-wrap: break-word;
 }
+
+.ColorPickerWrapper {
+    height: 80%;
+    width: 40%;
+    /* background-color: bisque; */
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+}
+
+.SwatchesFont {
+    background: coral;
+
+    width: 45%;
+    height: 20%;
+}
+
+.SwatchesFront {
+    background-color: white;
+    width: 20%;
+    height: 45%;
+
+    position: absolute;
+    left: 10%;
+    top: 30%;
+
+    z-index: 2;
+
+    border: solid;
+    border-color: black;
+}
+
+.SwatchesBack {
+    background-color: black;
+    width: 20%;
+    height: 45%;
+
+    position: relative;
+    left: 5%;
+    top: 15%;
+
+    z-index: 1;
+
+    border: solid;
+    border-color: rgb(233, 233, 233);
+}
+
+.ColorGradient {
+    height: 80%;
+    width: 45%;
+
+    position: relative;
+    top: 10%;
+    left: 15%;
+
+    /* background-color: orange; */
+
+    border: solid;
+    border-color: rgb(233, 233, 233);
+}
+
+.MultiColor {
+    /* background-color: cyan; */
+    
+    width:5%;
+    height:80%;
+
+    position: relative;
+    top: 10%;
+    left: 20%;
+
+    border: solid;
+    border-color: rgb(233, 233, 233);
+}
+
+
 
 .FileWrapper {
     width: 13%;
     height: 80%;
+
+    position: relative;
+    left: 2%;
 
     /* background-color: blue; */
 }
@@ -183,7 +241,7 @@
     justify-content: center;
     align-items: center;
 
-    font-size: 30px;
+    font-size: 20px;
     color:white;
 }
 
@@ -269,86 +327,64 @@
     background-image: linear-gradient(to bottom, #7c7c7c, #505050);
 }
 
-.ColorPickerWrapper {
+.BrushWrapper {
+    width: 13%;
     height: 80%;
-    width: 40%;
-    /* background-color: bisque; */
+
+    /* background-color: blue; */
+}
+
+.BrushSizeWrapper {
+    width: 100%;
+    height: 30%;
+
+    /* background-color: pink; */
+
     display: flex;
     flex-direction: row;
-
-    position: relative;
 }
 
-.SwatchesFont {
-    background: coral;
-
-    width: 45%;
-    height: 20%;
-}
-
-.SwatchesFront {
-    background-color: white;
-    width: 20%;
-    height: 45%;
-
-    position: absolute;
-    left: 10%;
-    top: 30%;
-
-    z-index: 2;
-
-    border: solid;
-    border-color: black;
-}
-
-.SwatchesBack {
-    background-color: black;
-    width: 20%;
-    height: 45%;
-
-    position: relative;
-    left: 5%;
-    top: 15%;
-
-    z-index: 1;
-
-    border: solid;
-    border-color: rgb(233, 233, 233);
-}
-
-.ColorGradient {
-    height: 80%;
-    width: 45%;
-
-    position: relative;
-    top: 10%;
-    left: 15%;
-
-    /* background-color: orange; */
-
-    border: solid;
-    border-color: rgb(233, 233, 233);
-}
-
-.MultiColor {
-    /* background-color: cyan; */
+.BrushSize {
+    width: 70%;
+    height: 100%;
     
-    width:5%;
-    height:80%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-    position: relative;
-    top: 10%;
-    left: 20%;
-
-    border: solid;
-    border-color: rgb(233, 233, 233);
+    font-size: 16px;
+    color: white;
 }
 
+#brushSizeSlider {
+    width:80%;
+}
+
+.BrushSizeNumberWrapper {
+    width: 30%;
+    height: 100%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color:aquamarine; */
+}
+
+.BrushSizeNumber {
+    font-size: 16px;
+    color:white;
+
+    padding: 6px;
+
+    border: solid white;
+}
 
 .DrawingCanvasWrapper {
     background-color: white;
     width: 100%;
-    height: 80%;
+    height: 70%;
 
     /* cursor: url('/assets/images/circleCursor.png'), auto; */
 }

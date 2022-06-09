@@ -31,7 +31,7 @@ export class DrawingCanvasComponent implements OnInit {
   private prevColor: string = "rgb(255,0,0)";
 
   // Drawing Canvas Attributes
-  private PixelSizeX: number = 10;
+  public PixelSizeX: number = 10;
   private PixelSizeY: number = 10;
 
   // Record last picking for the case where user select the multi color

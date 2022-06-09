@@ -29,6 +29,30 @@
             </div>
         </div>
 
+        <div class="BrushWrapper">
+            <div class="FileTitleLineWrapper">
+                <div class="FileTitleLine"><hr></div>
+                <div class="FileTitleText">Brush</div>
+                <div class="FileTitleLine"><hr></div>
+            </div>
+
+            <div class="BrushSizeWrapper">
+                <div class="BrushSize"> 
+                    Brush Size
+                    <input type="range" name="brushSize" id="brushSizeSlider" value="10" min="0" max="50" [(ngModel)]="PixelSizeX" />
+                </div>
+                <div class="BrushSizeNumberWrapper">
+                    <div class="BrushSizeNumber">
+                        {{PixelSizeX}}
+                    </div>
+                </div>
+
+                
+            </div>
+
+
+        </div>
+
         <div class="FileWrapper">
             <div class="FileTitleLineWrapper">
                 <div class="FileTitleLine"><hr></div>
@@ -42,6 +66,8 @@
                 <button class="SaveCanvasButton" (click)="DownloadCanvas()">Download</button>
             </div>
         </div>
+
+        
 
     </div>
 
