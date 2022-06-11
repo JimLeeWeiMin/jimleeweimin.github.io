@@ -24,6 +24,7 @@
                 </div>
                 <div class="SwatchesSwitch" (click)="SwapSwatches()" #divSwatchesSwitch>
                     <fa-icon [icon]="iconSwitch"></fa-icon>
+                    <span class="SwatchesSwitchToolTip">Switches Foreground and Background Color (X)</span>
                 </div>
             </div>
             
@@ -60,12 +61,15 @@
             <div class="BrushTypesWrapper" #ToolsWrapper>
                 <div class="BrushTypesButtonWrapper" (click)="Click_ArrowPointer()" >
                     <fa-icon [icon]="iconArrowPointer"></fa-icon>
+                    <span class="MoveToolTip">Move Tool (V)</span>
                 </div>
                 <div class="BrushTypesButtonWrapper" (click)="Click_PaintBrush()" >
                     <fa-icon [icon]="iconPaintBrush"></fa-icon>
+                    <span class="BrushSwitchToolTip">Brush Tool (B)</span>
                 </div>
                 <div class="BrushTypesButtonWrapper" (click)="Click_Eraser()" >
                     <fa-icon [icon]="iconEraser"></fa-icon>
+                    <span class="EraserSwitchToolTip">Eraser Tool (E)</span>
                 </div>
             </div>
 

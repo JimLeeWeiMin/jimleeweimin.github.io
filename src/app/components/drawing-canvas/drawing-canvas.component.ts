@@ -101,17 +101,38 @@ export class DrawingCanvasComponent implements OnInit {
   @ViewChild('ToolsWrapper')
   private myToolPointer: ElementRef = {} as ElementRef;
 
+  // Record last mouse x and y
+  private lastCanvasX: number = 0;
+  private lastCanvasY: number = 0;
+
   @HostListener('document:keypress', ['$event'])
   HandleKeyBoardEvent(evt: KeyboardEvent) {
-
-    
 
     //Swap the swatches
     if(evt.key === 'x')
     {
       this.SwapSwatches();
+    }
 
-      
+    // Move Tool
+    if(evt.key === 'v')
+    {
+      this.Click_ArrowPointer();
+      this.UpdateMouseCursor();
+    }
+
+    // Brush Tool
+    if(evt.key === 'b')
+    {
+      this.Click_PaintBrush();
+      this.UpdateMouseCursor();
+    }
+
+    // Eraser Tool
+    if(evt.key === 'e')
+    {
+      this.Click_Eraser();
+      this.UpdateMouseCursor();
     }
 
   }
@@ -409,6 +430,48 @@ export class DrawingCanvasComponent implements OnInit {
     this.SetToolSelection(this.eDrawingCanvasSelection.Eraser);
   }
 
+  UpdateMouseCursor(): void {
+    // Set mouse cursor back to normal
+    document.body.style.cursor = "none";
+
+    if(this.previousUserSelection === this.eDrawingCanvasSelection.Brush) {
+      // Set the custom cursor visibilty to hidden
+      this.myBrushPointer.nativeElement.style.display = "none";
+    }
+    else if(this.previousUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.myEraserPointer.nativeElement.style.display = "none";
+    }
+
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush)
+    {
+      // Set the custom cursor visibilty to hidden
+      this.myBrushPointer.nativeElement.style.display = "inline";
+
+      // Set the size of the custom cursor
+      this.myBrushPointer.nativeElement.style.height = String(this.PixelSizeX*2) + "px";
+      this.myBrushPointer.nativeElement.style.width = String(this.PixelSizeX*2) + "px"; 
+
+      // Set the location to the cursor
+      this.myBrushPointer.nativeElement.style.left = String(this.lastCanvasX) + "px";
+      this.myBrushPointer.nativeElement.style.top = String(this.lastCanvasY) + "px";
+    }
+    else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      // Set the custom cursor visibilty to hidden
+      this.myEraserPointer.nativeElement.style.display = "inline";
+
+      // Set the size of the custom cursor
+      this.myEraserPointer.nativeElement.style.height = String(this.PixelSizeX) + "px";
+      this.myEraserPointer.nativeElement.style.width = String(this.PixelSizeX) + "px";
+      
+      // Set the location to the cursor
+      this.myEraserPointer.nativeElement.style.left = String(this.lastCanvasX) + "px";
+      this.myEraserPointer.nativeElement.style.top = String(this.lastCanvasY) + "px";
+    }
+    else {
+      document.body.style.cursor = "auto";
+    }
+  }
+
   mouseLeave(evt: MouseEvent): void {
     // Set mouse cursor back to normal
     document.body.style.cursor = "auto";
@@ -480,6 +543,9 @@ export class DrawingCanvasComponent implements OnInit {
       this.myEraserPointer.nativeElement.style.left = String(evt.offsetX) + "px";
       this.myEraserPointer.nativeElement.style.top = String(evt.y) + "px";
     }
+
+    this.lastCanvasX = evt.offsetX;
+    this.lastCanvasY = evt.y;
 
   }
 

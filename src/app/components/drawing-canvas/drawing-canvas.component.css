@@ -199,6 +199,26 @@
     border-radius: 15px;
 }
 
+.SwatchesSwitch .SwatchesSwitchToolTip {
+  visibility: hidden;
+  width: 300px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 100%;
+  margin-left: 1000%;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+.SwatchesSwitch:hover .SwatchesSwitchToolTip {
+    visibility: visible;
+}
+
 .SwatchesSwitch fa-icon {
     font-size: 20px;
     color: white;
@@ -455,6 +475,66 @@
 .BrushTypesButtonWrapper fa-icon {
     color: white;
     font-size: 25px;
+}
+
+.BrushTypesButtonWrapper .MoveToolTip {
+    visibility: hidden;
+    width: 100px;
+    background-color: black;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 25%;
+    margin-left: 75%;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+.BrushTypesButtonWrapper:hover .MoveToolTip {
+    visibility: visible;
+}
+  
+.BrushTypesButtonWrapper .BrushSwitchToolTip {
+    visibility: hidden;
+    width: 100px;
+    background-color: black;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 25%;
+    margin-left: 75%;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+.BrushTypesButtonWrapper:hover .BrushSwitchToolTip {
+    visibility: visible;
+}
+
+.BrushTypesButtonWrapper .EraserSwitchToolTip {
+    visibility: hidden;
+    width: 100px;
+    background-color: black;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 25%;
+    margin-left: 75%;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+.BrushTypesButtonWrapper:hover .EraserSwitchToolTip {
+    visibility: visible;
 }
 
 #BrushWrapper {
