@@ -1,6 +1,17 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 
+import { faEraser } from '@fortawesome/free-solid-svg-icons';
+import { faPaintbrush } from '@fortawesome/free-solid-svg-icons';
+import { faArrowPointer } from '@fortawesome/free-solid-svg-icons';
+
+export enum DrawingCanvasSelection {
+  None = -1,
+  MousePointer,
+  Brush,
+  Eraser,
+}
+
 @Component({
   selector: 'app-drawing-canvas',
   templateUrl: './drawing-canvas.component.html',
@@ -8,6 +19,16 @@ import { HostListener } from '@angular/core';
 })
 
 export class DrawingCanvasComponent implements OnInit {
+  //References to enum
+  private eDrawingCanvasSelection = DrawingCanvasSelection;
+  private currentUserSelection: number = this.eDrawingCanvasSelection.Brush;
+  private previousUserSelection: number = this.eDrawingCanvasSelection.None;
+
+  // Icon
+  iconArrowPointer = faArrowPointer;
+  iconPaintBrush = faPaintbrush;
+  iconEraser = faEraser;
+
   // Canvas to draw on
   private ctx!: CanvasRenderingContext2D;
 
@@ -73,6 +94,13 @@ export class DrawingCanvasComponent implements OnInit {
   // Look for mouse cursor
   @ViewChild('BrushPointer')
   private myBrushPointer: ElementRef = {} as ElementRef;
+
+  @ViewChild('EraserPointer')
+  private myEraserPointer: ElementRef = {} as ElementRef;
+
+  // Get the Tools Wrapper
+  @ViewChild('ToolsWrapper')
+  private myToolPointer: ElementRef = {} as ElementRef;
 
   @HostListener('document:keypress', ['$event'])
   HandleKeyBoardEvent(evt: KeyboardEvent) {
@@ -160,6 +188,27 @@ export class DrawingCanvasComponent implements OnInit {
     // Set the last picking
     this.lastX = this.ctxColorGradientSelector.canvas.width / 2;
     this.lastY = this.ctxColorGradientSelector.canvas.height / 2;
+
+    // Set the current tool selection
+    this.myToolPointer.nativeElement.children[this.currentUserSelection].style.border = "solid gray";
+    this.myToolPointer.nativeElement.children[this.currentUserSelection].firstChild.style.color = "gray";
+  }
+
+  // Set the visual selection for the current tool the user select
+  SetToolSelection(myTool: DrawingCanvasSelection): void
+  {
+    // Set the previous selection
+    this.previousUserSelection = this.currentUserSelection;
+
+    // Set the current selection
+    this.currentUserSelection = myTool;
+
+    // Change the U.I
+    this.myToolPointer.nativeElement.children[this.previousUserSelection].style.border = "solid white";
+    this.myToolPointer.nativeElement.children[this.previousUserSelection].firstChild.style.color = "white";
+
+    this.myToolPointer.nativeElement.children[this.currentUserSelection].style.border = "solid gray";
+    this.myToolPointer.nativeElement.children[this.currentUserSelection].firstChild.style.color = "gray";
   }
 
   InitCanvas( _ctx: CanvasRenderingContext2D,
@@ -335,49 +384,111 @@ export class DrawingCanvasComponent implements OnInit {
     }
   }
 
+  Click_ArrowPointer(): void {
+    this.SetToolSelection(this.eDrawingCanvasSelection.MousePointer);
+  }
+
+  Click_PaintBrush(): void {
+    this.SetToolSelection(this.eDrawingCanvasSelection.Brush);
+  }
+
+  Click_Eraser(): void { 
+    this.SetToolSelection(this.eDrawingCanvasSelection.Eraser);
+  }
+
   mouseLeave(evt: MouseEvent): void {
     // Set mouse cursor back to normal
     document.body.style.cursor = "auto";
 
-    // Set the custom cursor visibilty to hidden
-    this.myBrushPointer.nativeElement.style.display = "none";
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+      // Set the custom cursor visibilty to hidden
+      this.myBrushPointer.nativeElement.style.display = "none";
+    }
+    else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.myEraserPointer.nativeElement.style.display = "none";
+    }
   }
 
   mouseEnter(evt: MouseEvent): void {
-    // Set mouse cursor to none
-    document.body.style.cursor = "none";
+    
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush)
+       {
+        // Set mouse cursor to none
+        document.body.style.cursor = "none";
 
-    // Set the custom cursor visibilty to hidden
-    this.myBrushPointer.nativeElement.style.display = "inline";
+        // Set the custom cursor visibilty to hidden
+        this.myBrushPointer.nativeElement.style.display = "inline";
 
-    // Set the size of the custom cursor
-    this.myBrushPointer.nativeElement.style.height = String(this.PixelSizeX*2) + "px";
-    this.myBrushPointer.nativeElement.style.width = String(this.PixelSizeX*2) + "px"; 
+        // Set the size of the custom cursor
+        this.myBrushPointer.nativeElement.style.height = String(this.PixelSizeX*2) + "px";
+        this.myBrushPointer.nativeElement.style.width = String(this.PixelSizeX*2) + "px"; 
+       }
+    else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+        // Set mouse cursor to none
+        document.body.style.cursor = "none";
+
+        // Set the custom cursor visibilty to hidden
+        this.myEraserPointer.nativeElement.style.display = "inline";
+
+        // Set the size of the custom cursor
+        this.myEraserPointer.nativeElement.style.height = String(this.PixelSizeX) + "px";
+        this.myEraserPointer.nativeElement.style.width = String(this.PixelSizeX) + "px"; 
+    }
   }
 
   mouseDown(evt: MouseEvent): void {
     this.mouseDownFlag = true;
-    this.Draw(evt.offsetX, evt.offsetY);
+
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+      this.Draw(evt.offsetX, evt.offsetY);
+    }
+    else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.Erase(evt.offsetX, evt.offsetY);
+    }
+
   }
 
   mouseMove(evt: MouseEvent): void {
     if(this.mouseDownFlag) {
-      this.Draw(evt.offsetX, evt.offsetY);
+      if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+        this.Draw(evt.offsetX, evt.offsetY);
+      }
+      else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+        this.Erase(evt.offsetX, evt.offsetY);
+      }
     }
 
-    // Get the div to follow the mouse
-    this.myBrushPointer.nativeElement.style.left = String(evt.offsetX) + "px";
-    this.myBrushPointer.nativeElement.style.top = String(evt.y) + "px";
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+      // Get the div to follow the mouse
+      this.myBrushPointer.nativeElement.style.left = String(evt.offsetX) + "px";
+      this.myBrushPointer.nativeElement.style.top = String(evt.y) + "px";
+    }
+    else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.myEraserPointer.nativeElement.style.left = String(evt.offsetX) + "px";
+      this.myEraserPointer.nativeElement.style.top = String(evt.y) + "px";
+    }
+
   }
 
   mouseUp(evt: MouseEvent): void {
     this.mouseDownFlag = false;
-    this.Draw(evt.offsetX, evt.offsetY);
+    
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+      this.Draw(evt.offsetX, evt.offsetY);
+    }
+    else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.Erase(evt.offsetX, evt.offsetY);
+    }
+
   }
 
   Draw(_x: number, _y: number):void {
     this.ctx.beginPath();
     this.ctx.arc(_x, _y, this.PixelSizeX, 0, 2 * Math.PI);
     this.ctx.fill();
+  }
+
+  Erase(_x: number, _y: number): void {
+    this.ctx.clearRect(_x, _y, this.PixelSizeX, this.PixelSizeX);
   }
 }

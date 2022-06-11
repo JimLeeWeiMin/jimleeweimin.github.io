@@ -17,6 +17,23 @@
     z-index: 1000;
 }
 
+.EraserPointer {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    border: 2px solid black;
+    display:none;
+
+    color:transparent;
+
+    top: 0;
+    left: 0;
+
+    pointer-events: none;
+
+    z-index: 1000;
+}
+
 .AllToolsWrapper {
     width: 100%;
     height: 100%;
@@ -381,12 +398,48 @@
     border: solid white;
 }
 
+.BrushTypesWrapper {
+    height: 30%;
+    width: 100%;
+    /* background-color: aquamarine; */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.BrushTypesButtonWrapper {
+    height: 60%;
+    width: 20%;
+    /* background-color: antiquewhite; */
+
+    border: solid white;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.BrushTypesButtonWrapper fa-icon {
+    color: white;
+    font-size: 25px;
+}
+
+#BrushWrapper {
+    border: solid gray;
+    border-radius: 15px;
+}
+
+#Brush {  
+    color: gray;
+}
+
 .DrawingCanvasWrapper {
     background-color: white;
     width: 100%;
     height: 70%;
-
-    /* cursor: url('/assets/images/circleCursor.png'), auto; */
 }
 
 

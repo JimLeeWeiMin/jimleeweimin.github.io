@@ -1,6 +1,6 @@
 <div class="CursorTypes">
-    <div class="BrushPointer" #BrushPointer>
-    </div>
+    <div class="BrushPointer" #BrushPointer></div>
+    <div class="EraserPointer" #EraserPointer></div>
 </div>
 
 
@@ -27,6 +27,8 @@
             <div class="MultiColor" #divCanvasMultiColor (mousedown)="multiColorPickerDown($event)" (mouseup)="multiColorPickerUp($event)" (mousemove)="multiColorPickerMove($event)">
                 <canvas #canvasMultiColor></canvas>
             </div>
+
+                        <!-- <mat-icon>repeat</mat-icon> -->
         </div>
 
         <div class="BrushWrapper">
@@ -46,8 +48,18 @@
                         {{PixelSizeX}}
                     </div>
                 </div>
+            </div>
 
-                
+            <div class="BrushTypesWrapper" #ToolsWrapper>
+                <div class="BrushTypesButtonWrapper" (click)="Click_ArrowPointer()" >
+                    <fa-icon [icon]="iconArrowPointer"></fa-icon>
+                </div>
+                <div class="BrushTypesButtonWrapper" (click)="Click_PaintBrush()" >
+                    <fa-icon [icon]="iconPaintBrush"></fa-icon>
+                </div>
+                <div class="BrushTypesButtonWrapper" (click)="Click_Eraser()" >
+                    <fa-icon [icon]="iconEraser"></fa-icon>
+                </div>
             </div>
 
 
