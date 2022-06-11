@@ -29,15 +29,15 @@ export class DrawingCanvasComponent implements OnInit {
   iconEraser = faEraser;
 
   // Canvas to draw on
-  private ctx!: CanvasRenderingContext2D;
+  private ctxDrawingBlock!: CanvasRenderingContext2D;
 
   // Targets the canvas that is inside the div
   @ViewChild('canvasEl') 
-  private canvasEl: ElementRef = {} as ElementRef;
+  private myCanvasDrawingBlock: ElementRef = {} as ElementRef;
 
   // Refer to the div that holds the canvas
   @ViewChild('MyDivCanvas')
-  private myIdentifer: ElementRef = {} as ElementRef;
+  private myDivDrawingBlock: ElementRef = {} as ElementRef;
 
   // Flag to start the drag recording for canvas
   private mouseDownFlag = false;
@@ -125,7 +125,20 @@ export class DrawingCanvasComponent implements OnInit {
     // Init the Canvas
 
     // Drawing block
-    this.ctx = this.InitCanvas(this.ctx, this.myIdentifer, this.canvasEl);
+    this.ctxDrawingBlock = this.InitCanvas(this.ctxDrawingBlock, this.myDivDrawingBlock, this.myCanvasDrawingBlock);
+    // this.ctxDrawingBlock = this.resizeToFitTarget(this.ctxDrawingBlock, 500, 500);
+    // this.ctxDrawingBlock = this.myCanvasDrawingBlock.nativeElement.getContext('2d');
+    // this.ctxDrawingBlock.canvas.width = 500;
+    // this.ctxDrawingBlock.canvas.height = 500;
+    // let tx = parseFloat(getComputedStyle(this.myDivDrawingBlock.nativeElement).width.split('p')[0]);
+    // let ty = parseFloat(getComputedStyle(this.myDivDrawingBlock.nativeElement).height.split('p')[0]);
+    // this.ctxDrawingBlock.fillStyle = "rgb(255,255,255)";
+    // console.log((tx/2)-(500/2));
+    // console.log((ty/2)-(500/2));
+    // this.ctxDrawingBlock.fillRect(0,0,500,500);
+    //this.ctxDrawingBlock.fillRect(250, 250, 500, 500);
+    
+
     // Multi Color for the bottom wrapper
     this.ctxMultiColor = this.InitCanvas(this.ctxMultiColor, this.myDivCanvasMultiColor, this.myCanvasMultiColor);
     // Color selector
@@ -134,7 +147,7 @@ export class DrawingCanvasComponent implements OnInit {
     this.ctxColorGradientSelector = this.InitCanvas(this.ctxColorGradientSelector, this.myDivCanvasColorGradientSelected, this.myCanvasColorGradientSelected);
     
     // Set the drawing color to the same as current color
-    this.ctx.fillStyle = this.currentColor;
+    this.ctxDrawingBlock.fillStyle = this.currentColor;
     
     // Draw current selected color
     this.ctxColorSelected.fillStyle = this.currentColor;
@@ -211,7 +224,7 @@ export class DrawingCanvasComponent implements OnInit {
   }
 
   DownloadCanvas(): void {
-    var canvasDataUrl = this.ctx.canvas.toDataURL().replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+    var canvasDataUrl = this.ctxDrawingBlock.canvas.toDataURL().replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
     var link = document.createElement('a');
 
     link.setAttribute('href', canvasDataUrl);
@@ -222,9 +235,9 @@ export class DrawingCanvasComponent implements OnInit {
   }
 
   ClearCanvas(): void {
-    this.ctx.fillStyle = "rgb(255,255,255)";
-    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-    this.ctx.fillStyle = this.currentColor;
+    this.ctxDrawingBlock.fillStyle = "rgb(255,255,255)";
+    this.ctxDrawingBlock.fillRect(0, 0, this.ctxDrawingBlock.canvas.width, this.ctxDrawingBlock.canvas.height);
+    this.ctxDrawingBlock.fillStyle = this.currentColor;
   }
 
   multiColorPickerDown(evt: MouseEvent): void {
@@ -248,7 +261,7 @@ export class DrawingCanvasComponent implements OnInit {
 
     // Get the current color
     this.ctxColorSelected.fillStyle = "rgba("+tc[0]+","+tc[1]+","+tc[2]+","+tc[3]+")";
-    this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+    this.ctxDrawingBlock.fillStyle = this.ctxColorSelected.fillStyle;
 
     // Change the color selected
     this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
@@ -276,7 +289,7 @@ export class DrawingCanvasComponent implements OnInit {
 
       // Get the current color
       this.ctxColorSelected.fillStyle = "rgba("+tc[0]+","+tc[1]+","+tc[2]+","+tc[3]+")";
-      this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+      this.ctxDrawingBlock.fillStyle = this.ctxColorSelected.fillStyle;
 
       // Change the color selected
       this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
@@ -307,7 +320,7 @@ export class DrawingCanvasComponent implements OnInit {
 
     // Get the current color
     this.ctxColorSelected.fillStyle = "rgba("+tc[0]+","+tc[1]+","+tc[2]+","+tc[3]+")";
-    this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+    this.ctxDrawingBlock.fillStyle = this.ctxColorSelected.fillStyle;
 
     // Change the color selected
     this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
@@ -321,6 +334,16 @@ export class DrawingCanvasComponent implements OnInit {
     _ctx.canvas.height = _DivCtx.nativeElement.offsetHeight;
   }
 
+  resizeToFitTarget(_ctx: CanvasRenderingContext2D, _x: number, _y: number): CanvasRenderingContext2D {
+    _ctx.canvas.style.width = '100%';
+    _ctx.canvas.style.height = '100%';
+
+    _ctx.canvas.width = _x;
+    _ctx.canvas.height = _y;
+
+    return _ctx;
+  }
+
   colorPickerDown(evt: MouseEvent): void {
     let c:Uint8ClampedArray = this.ctxColorGradientSelector.getImageData(evt.offsetX, evt.offsetY, 1, 1).data;
 
@@ -332,7 +355,7 @@ export class DrawingCanvasComponent implements OnInit {
 
     // Get the current color
     this.ctxColorSelected.fillStyle = "rgba("+c[0]+","+c[1]+","+c[2]+","+c[3]+")";
-    this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+    this.ctxDrawingBlock.fillStyle = this.ctxColorSelected.fillStyle;
 
     // Change the color selected
     this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
@@ -349,7 +372,7 @@ export class DrawingCanvasComponent implements OnInit {
 
     // Get the current color
     this.ctxColorSelected.fillStyle = "rgba("+c[0]+","+c[1]+","+c[2]+","+c[3]+")";
-    this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+    this.ctxDrawingBlock.fillStyle = this.ctxColorSelected.fillStyle;
     this.currentColor = this.ctxColorSelected.fillStyle;
 
     // Change the color selected
@@ -367,7 +390,7 @@ export class DrawingCanvasComponent implements OnInit {
 
       // Get the current color
       this.ctxColorSelected.fillStyle = "rgba("+c[0]+","+c[1]+","+c[2]+","+c[3]+")";
-      this.ctx.fillStyle = this.ctxColorSelected.fillStyle;
+      this.ctxDrawingBlock.fillStyle = this.ctxColorSelected.fillStyle;
 
       // Change the color selected
       this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
@@ -473,13 +496,13 @@ export class DrawingCanvasComponent implements OnInit {
   }
 
   Draw(_x: number, _y: number):void {
-    this.ctx.beginPath();
-    this.ctx.arc(_x, _y, this.PixelSizeX, 0, 2 * Math.PI);
-    this.ctx.fill();
+    this.ctxDrawingBlock.beginPath();
+    this.ctxDrawingBlock.arc(_x, _y, this.PixelSizeX, 0, 2 * Math.PI);
+    this.ctxDrawingBlock.fill();
   }
 
   Erase(_x: number, _y: number): void {
-    this.ctx.clearRect(_x, _y, this.PixelSizeX, this.PixelSizeX);
+    this.ctxDrawingBlock.clearRect(_x, _y, this.PixelSizeX, this.PixelSizeX);
   }
 
   SwapSwatches(): void {
@@ -496,6 +519,6 @@ export class DrawingCanvasComponent implements OnInit {
     this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
   
     // Set current color
-    this.ctx.fillStyle = this.currentColor;
+    this.ctxDrawingBlock.fillStyle = this.currentColor;
   }
 }

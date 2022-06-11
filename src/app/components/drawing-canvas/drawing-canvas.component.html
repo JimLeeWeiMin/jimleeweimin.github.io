@@ -91,7 +91,7 @@
     </div>
 
 </div>
-<div class="DrawingCanvasWrapper" #MyDivCanvas (mouseleave)="mouseLeave($event)" (mouseenter)="mouseEnter($event)" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)">
-    <canvas #canvasEl></canvas>
+<div class="DrawingCanvasWrapper" #MyDivCanvas >
+    <canvas #canvasEl (mouseleave)="mouseLeave($event)" (mouseenter)="mouseEnter($event)" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)"></canvas>
 </div>
 
