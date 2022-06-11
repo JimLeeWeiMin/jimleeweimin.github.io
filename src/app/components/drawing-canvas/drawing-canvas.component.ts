@@ -1,9 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 
-import { faEraser } from '@fortawesome/free-solid-svg-icons';
-import { faPaintbrush } from '@fortawesome/free-solid-svg-icons';
-import { faArrowPointer } from '@fortawesome/free-solid-svg-icons';
+import { faRepeat, faEraser, faPaintbrush, faArrowPointer } from '@fortawesome/free-solid-svg-icons';
 
 export enum DrawingCanvasSelection {
   None = -1,
@@ -25,6 +23,7 @@ export class DrawingCanvasComponent implements OnInit {
   private previousUserSelection: number = this.eDrawingCanvasSelection.None;
 
   // Icon
+  iconSwitch = faRepeat;
   iconArrowPointer = faArrowPointer;
   iconPaintBrush = faPaintbrush;
   iconEraser = faEraser;
@@ -105,23 +104,14 @@ export class DrawingCanvasComponent implements OnInit {
   @HostListener('document:keypress', ['$event'])
   HandleKeyBoardEvent(evt: KeyboardEvent) {
 
+    
+
     //Swap the swatches
     if(evt.key === 'x')
     {
-      // Grab the previous color
-      this.prevColor = this.currentColor;
-      // Set the current color
-      this.currentColor = getComputedStyle(this.mySwatchesBack.nativeElement).backgroundColor;
+      this.SwapSwatches();
 
-      // Draw the SwatchesBack color
-      this.mySwatchesBack.nativeElement.style.backgroundColor = this.prevColor;
-
-      // Draw the SwatchesFront color
-      this.ctxColorSelected.fillStyle = this.currentColor;
-      this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
-    
-      // Set current color
-      this.ctx.fillStyle = this.currentColor;
+      
     }
 
   }
@@ -490,5 +480,22 @@ export class DrawingCanvasComponent implements OnInit {
 
   Erase(_x: number, _y: number): void {
     this.ctx.clearRect(_x, _y, this.PixelSizeX, this.PixelSizeX);
+  }
+
+  SwapSwatches(): void {
+    // Grab the previous color
+    this.prevColor = this.currentColor;
+    // Set the current color
+    this.currentColor = getComputedStyle(this.mySwatchesBack.nativeElement).backgroundColor;
+
+    // Draw the SwatchesBack color
+    this.mySwatchesBack.nativeElement.style.backgroundColor = this.prevColor;
+
+    // Draw the SwatchesFront color
+    this.ctxColorSelected.fillStyle = this.currentColor;
+    this.ctxColorSelected.fillRect(0, 0, this.ctxColorSelected.canvas.width, this.ctxColorSelected.canvas.height);
+  
+    // Set current color
+    this.ctx.fillStyle = this.currentColor;
   }
 }

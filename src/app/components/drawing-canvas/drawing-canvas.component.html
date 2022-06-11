@@ -16,19 +16,26 @@
     <div class="AllToolsWrapper">
         
         <div class="ColorPickerWrapper">
-            <div class="SwatchesFront" #divCanvasColorSelected>
-                <canvas #canvasColorSelected></canvas>
+            <div class="SwatchesWrapper">
+                <div class="SwatchesFront" #divCanvasColorSelected>
+                    <canvas #canvasColorSelected></canvas>
+                </div>
+                <div class="SwatchesBack" #divSwatchesBack>
+                </div>
+                <div class="SwatchesSwitch" (click)="SwapSwatches()" #divSwatchesSwitch>
+                    <fa-icon [icon]="iconSwitch"></fa-icon>
+                </div>
             </div>
-            <div class="SwatchesBack" #divSwatchesBack>
-            </div>
+            
             <div class="ColorGradient" #divCanvasColorGradientSelector (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)">
                 <canvas #canvasColorGradientSelector></canvas>
             </div>
             <div class="MultiColor" #divCanvasMultiColor (mousedown)="multiColorPickerDown($event)" (mouseup)="multiColorPickerUp($event)" (mousemove)="multiColorPickerMove($event)">
                 <canvas #canvasMultiColor></canvas>
             </div>
+            
 
-                        <!-- <mat-icon>repeat</mat-icon> -->
+                        
         </div>
 
         <div class="BrushWrapper">

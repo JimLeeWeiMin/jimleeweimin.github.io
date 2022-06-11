@@ -35,6 +35,7 @@
 }
 
 .AllToolsWrapper {
+    
     width: 100%;
     height: 100%;
 
@@ -134,29 +135,31 @@
 
 .ColorPickerWrapper {
     height: 80%;
-    width: 40%;
+    width: 38%;
     /* background-color: bisque; */
     display: flex;
     flex-direction: row;
 
     position: relative;
+    left: 1%;
 }
 
-.SwatchesFont {
-    background: coral;
+.SwatchesWrapper {
+    /* background-color: aquamarine; */
+    width: 35%;
+    height: 100%;
 
-    width: 45%;
-    height: 20%;
+    position: relative;
 }
 
 .SwatchesFront {
     background-color: white;
-    width: 20%;
-    height: 45%;
+    width: 60%;
+    height: 50%;
 
     position: absolute;
-    left: 10%;
-    top: 30%;
+    left: 30%;
+    top: 40%;
 
     z-index: 2;
 
@@ -166,11 +169,11 @@
 
 .SwatchesBack {
     background-color: black;
-    width: 20%;
-    height: 45%;
+    width: 60%;
+    height: 50%;
 
-    position: relative;
-    left: 5%;
+    position: absolute;
+    left: 2%;
     top: 15%;
 
     z-index: 1;
@@ -179,13 +182,35 @@
     border-color: rgb(233, 233, 233);
 }
 
+.SwatchesSwitch {
+    /* background-color: rgb(39, 39, 39); */
+    height: 15%;
+    width: 17%;
+
+    position: absolute;
+    left: 71%;
+    top: 17%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: solid white;
+    border-radius: 15px;
+}
+
+.SwatchesSwitch fa-icon {
+    font-size: 20px;
+    color: white;
+}
+
 .ColorGradient {
     height: 80%;
     width: 45%;
 
     position: relative;
     top: 10%;
-    left: 15%;
+    left: 1%;
 
     /* background-color: orange; */
 
@@ -201,7 +226,7 @@
 
     position: relative;
     top: 10%;
-    left: 20%;
+    left: 8%;
 
     border: solid;
     border-color: rgb(233, 233, 233);
@@ -213,10 +238,12 @@
     width: 13%;
     height: 80%;
 
-    position: relative;
-    left: 2%;
 
-    /* background-color: blue; */
+
+    /* background-color: pink; */
+
+    position: relative;
+    left: 4%;
 }
 
 .FileTitleLineWrapper {
@@ -349,6 +376,9 @@
     height: 80%;
 
     /* background-color: blue; */
+
+    position: relative;
+    left: 2%;
 }
 
 .BrushSizeWrapper {
