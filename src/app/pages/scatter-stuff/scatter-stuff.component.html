@@ -10,6 +10,7 @@
                 <select [ngModel]="num" (change)="selectOnChange($event)" class="PageSelect"  >
                     <option value="1">2D Particle</option>
                     <option value="2">2D Canvas</option>
+                    <option value="3">2D Maze</option>
                 </select>
                 <div class="ArrowDownWrapper">
                     <fa-icon [icon]="iconArrowDown"></fa-icon>
@@ -18,9 +19,9 @@
                 
             </div>
             <div class="PageNumberWrapper">
-                <button class="ArrowButton" (click)="clickLeftPage()"> < </button>
-                {{num}}/2
-                <button class="ArrowButton" (click)="clickRightPage()"> > </button>
+                <button class="ArrowButton" (click)="clickLeftPage()"> &lt; </button>
+                {{num}}/{{currentMax}}
+                <button class="ArrowButton" (click)="clickRightPage()"> &gt; </button>
             </div>
         </div>
     </div>
@@ -29,6 +30,7 @@
     <div class="MyStuffWrapper" [ngSwitch]="num">
         <app-particle-emitter *ngSwitchCase="1" ></app-particle-emitter>
         <app-drawing-canvas *ngSwitchCase="2" ></app-drawing-canvas>
+        <app-pathfinding-maze *ngSwitchCase="3" ></app-pathfinding-maze>
     </div>
     
 </div>

@@ -15,6 +15,7 @@ import { ScatterStuffComponent } from './pages/scatter-stuff/scatter-stuff.compo
 import { ContactComponent } from './pages/contact/contact.component';
 import { ParticleEmitterComponent } from './components/particle-emitter/particle-emitter.component';
 import { DrawingCanvasComponent } from './components/drawing-canvas/drawing-canvas.component';
+import { PathfindingMazeComponent } from './components/pathfinding-maze/pathfinding-maze.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DrawingCanvasComponent } from './components/drawing-canvas/drawing-canv
     ContactComponent,
     ParticleEmitterComponent,
     DrawingCanvasComponent,
+    PathfindingMazeComponent,
   ],
   imports: [
     BrowserModule,
