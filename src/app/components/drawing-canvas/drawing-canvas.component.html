@@ -96,6 +96,6 @@
 
 </div>
 <div class="DrawingCanvasWrapper" #MyDivCanvas >
-    <canvas #canvasEl (mouseleave)="mouseLeave($event)" (mouseenter)="mouseEnter($event)" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)"></canvas>
+    <canvas #canvasEl (touchstart)="touchStart($event)" (touchend)="touchEnd($event)" (touchmove)="touchMove($event)" (mouseleave)="mouseLeave($event)" (mouseenter)="mouseEnter($event)" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)"></canvas>
 </div>
 
