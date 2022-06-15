@@ -29,6 +29,11 @@ class MazeNode {
 
 export class PathfindingMazeComponent implements OnInit {
 
+  @ViewChild('MazeCanvasBackground')
+  private myMazeBackgroundCanvas: ElementRef = {} as ElementRef;
+
+  private myMazeBackgroundCtx!: CanvasRenderingContext2D;
+
   @ViewChild('MazeCanvas')
   private myMazeCanvas: ElementRef = {} as ElementRef;
 
@@ -72,36 +77,41 @@ export class PathfindingMazeComponent implements OnInit {
   }
 
   ngAfterViewInit(): void { 
-    //Init the canvas
-    this.myMazeCtx = this.myMazeCanvas.nativeElement.getContext('2d');
-    this.myMazeCtx.canvas.width = this.myWidth;
-    this.myMazeCtx.canvas.height = this.myHeight;
+    //Init the background canvas
+    this.myMazeBackgroundCtx = this.myMazeBackgroundCanvas.nativeElement.getContext('2d');
+    this.myMazeBackgroundCtx.canvas.width = this.myWidth;
+    this.myMazeBackgroundCtx.canvas.height = this.myHeight;
 
     //Fill the canvas
-    this.myMazeCtx.fillStyle = "rgb(255, 203, 199)";
-    this.myMazeCtx.fillRect(0,0, this.myWidth, this.myHeight);
+    this.myMazeBackgroundCtx.fillStyle = "rgb(255, 203, 199)";
+    this.myMazeBackgroundCtx.fillRect(0,0, this.myWidth, this.myHeight);
 
     //Init the grid
-    this.myMazeCtx.strokeStyle = 'rgb(0, 0, 0)';
-    this.myMazeCtx.lineWidth = 1;
+    this.myMazeBackgroundCtx.strokeStyle = 'rgb(0, 0, 0)';
+    this.myMazeBackgroundCtx.lineWidth = 1;
 
     //Draw width
     for(let i = 0; i < this.myWidth; i += this.mySquare)
     {
-      this.myMazeCtx.beginPath();
-      this.myMazeCtx.moveTo(i, 0);
-      this.myMazeCtx.lineTo(i, this.myHeight);
-      this.myMazeCtx.stroke();
+      this.myMazeBackgroundCtx.beginPath();
+      this.myMazeBackgroundCtx.moveTo(i, 0);
+      this.myMazeBackgroundCtx.lineTo(i, this.myHeight);
+      this.myMazeBackgroundCtx.stroke();
     }
 
     //Draw the height
     for(let i = 0; i < this.myHeight; i += this.mySquare)
     {
-      this.myMazeCtx.beginPath();
-      this.myMazeCtx.moveTo(0, i);
-      this.myMazeCtx.lineTo(this.myWidth, i);
-      this.myMazeCtx.stroke();
+      this.myMazeBackgroundCtx.beginPath();
+      this.myMazeBackgroundCtx.moveTo(0, i);
+      this.myMazeBackgroundCtx.lineTo(this.myWidth, i);
+      this.myMazeBackgroundCtx.stroke();
     }
+
+    //Init the canvas
+    this.myMazeCtx = this.myMazeCanvas.nativeElement.getContext('2d');
+    this.myMazeCtx.canvas.width = this.myWidth;
+    this.myMazeCtx.canvas.height = this.myHeight;
   }
 
   CanvasEventHandler(evt: MouseEvent): void {
@@ -176,7 +186,7 @@ export class PathfindingMazeComponent implements OnInit {
   RemoveWall(_row: number, _col: number)
   {
     this.myMazeCtx.fillStyle = "rgb(255, 203, 199)";;
-    this.myMazeCtx.fillRect(_col*this.mySquare, _row*this.mySquare, this.mySquare, this.mySquare);
+    this.myMazeCtx.clearRect(_col*this.mySquare, _row*this.mySquare, this.mySquare, this.mySquare);
   }
 
   // For debugging

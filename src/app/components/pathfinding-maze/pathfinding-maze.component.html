@@ -1,5 +1,6 @@
 <div class="PathFindingMazeBackgroundWrapper">
     <div class="MazeCanvasWrapper">
-        <canvas (contextmenu)="CanvasEventHandler($event)" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" #MazeCanvas></canvas>
+        <canvas class="MazeCanvasBackground" #MazeCanvasBackground></canvas>
+        <canvas class="MazeCanvasBackground" (contextmenu)="CanvasEventHandler($event)" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" #MazeCanvas></canvas>
     </div>
 </div>

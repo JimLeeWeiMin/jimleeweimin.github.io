@@ -15,3 +15,7 @@
 
     background-color: bisque;
 }
+
+.MazeCanvasBackground {
+    position: absolute;
+}
