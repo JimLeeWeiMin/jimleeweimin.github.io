@@ -473,6 +473,10 @@ export class DrawingCanvasComponent implements OnInit {
   }
 
   touchStart(evt: TouchEvent): void {
+
+    //Prevent scroll while in canvas
+    evt.preventDefault();
+
     if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush)
     {
       // Set mouse cursor to none
@@ -509,6 +513,10 @@ export class DrawingCanvasComponent implements OnInit {
   }
 
   touchEnd(evt: TouchEvent): void {
+
+    //Prevent scroll while in canvas
+    evt.preventDefault();
+
     // Set mouse cursor back to normal
     document.body.style.cursor = "auto";
 
@@ -531,6 +539,10 @@ export class DrawingCanvasComponent implements OnInit {
   }
 
   touchMove(evt: TouchEvent): void {
+
+    //Prevent scroll while in canvas
+    evt.preventDefault();
+
     var rect = this.myDivDrawingBlock.nativeElement.getBoundingClientRect();
 
     this.lastCanvasX = evt.touches[0].clientX - rect.left;
