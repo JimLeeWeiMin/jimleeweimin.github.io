@@ -496,6 +496,15 @@ export class DrawingCanvasComponent implements OnInit {
         this.myEraserPointer.nativeElement.style.height = String(this.PixelSizeX) + "px";
         this.myEraserPointer.nativeElement.style.width = String(this.PixelSizeX) + "px"; 
     }
+
+    this.mouseDownFlag = true;
+
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+      this.Draw(evt.touches[0].clientX, evt.touches[0].clientY);
+    }
+    else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.Erase(evt.touches[0].clientX, evt.touches[0].clientY);
+    }
   }
 
   touchEnd(evt: TouchEvent): void {
@@ -508,6 +517,13 @@ export class DrawingCanvasComponent implements OnInit {
     }
     else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
       this.myEraserPointer.nativeElement.style.display = "none";
+    }
+
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+      this.Draw(evt.touches[0].clientX, evt.touches[0].clientY);
+    }
+    else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.Erase(evt.touches[0].clientX, evt.touches[0].clientY);
     }
   }
 
