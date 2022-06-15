@@ -472,6 +472,69 @@ export class DrawingCanvasComponent implements OnInit {
     }
   }
 
+  touchStart(evt: TouchEvent): void {
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush)
+    {
+     // Set mouse cursor to none
+     document.body.style.cursor = "none";
+
+     // Set the custom cursor visibilty to hidden
+     this.myBrushPointer.nativeElement.style.display = "inline";
+
+     // Set the size of the custom cursor
+     this.myBrushPointer.nativeElement.style.height = String(this.PixelSizeX*2) + "px";
+     this.myBrushPointer.nativeElement.style.width = String(this.PixelSizeX*2) + "px"; 
+    }
+    else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+        // Set mouse cursor to none
+        document.body.style.cursor = "none";
+
+        // Set the custom cursor visibilty to hidden
+        this.myEraserPointer.nativeElement.style.display = "inline";
+
+        // Set the size of the custom cursor
+        this.myEraserPointer.nativeElement.style.height = String(this.PixelSizeX) + "px";
+        this.myEraserPointer.nativeElement.style.width = String(this.PixelSizeX) + "px"; 
+    }
+  }
+
+  touchEnd(evt: TouchEvent): void {
+    // Set mouse cursor back to normal
+    document.body.style.cursor = "auto";
+
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+      // Set the custom cursor visibilty to hidden
+      this.myBrushPointer.nativeElement.style.display = "none";
+    }
+    else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.myEraserPointer.nativeElement.style.display = "none";
+    }
+  }
+
+  touchMove(evt: TouchEvent): void {
+    if(this.mouseDownFlag) {
+      if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+        this.Draw(evt.touches[0].clientX, evt.touches[0].clientY);
+      }
+      else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+        this.Erase(evt.touches[0].clientX, evt.touches[0].clientY);
+      }
+    }
+
+    if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
+      // Get the div to follow the mouse
+      this.myBrushPointer.nativeElement.style.left = String(evt.touches[0].clientX) + "px";
+      this.myBrushPointer.nativeElement.style.top = String(evt.touches[0].clientY) + "px";
+    }
+    else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.myEraserPointer.nativeElement.style.left = String(evt.touches[0].clientX) + "px";
+      this.myEraserPointer.nativeElement.style.top = String(evt.touches[0].clientY) + "px";
+    }
+
+    this.lastCanvasX = evt.touches[0].clientX;
+    this.lastCanvasY = evt.touches[0].clientY;
+  }
+
   mouseLeave(evt: MouseEvent): void {
     // Set mouse cursor back to normal
     document.body.style.cursor = "auto";

@@ -1,6 +1,17 @@
-.PathFindingMazeWrapper {
+.PathFindingMazeBackgroundWrapper {
     width: 100%;
     height: 100%;
 
     background-color: aliceblue;
+}
+
+.MazeCanvasWrapper {
+    width: 1000px;
+    height: 600px;
+
+    position: relative;
+    top: 30%;
+    left: 15%;
+
+    background-color: bisque;
 }
