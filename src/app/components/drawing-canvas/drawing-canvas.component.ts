@@ -498,12 +498,13 @@ export class DrawingCanvasComponent implements OnInit {
     }
 
     this.mouseDownFlag = true;
+    var rect = this.myDivDrawingBlock.nativeElement.getBoundingClientRect();
 
     if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
-      this.Draw(evt.touches[0].clientX, evt.touches[0].clientY);
+      this.Draw(evt.touches[0].clientX - rect.left, evt.touches[0].clientY - rect.top);
     }
     else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
-      this.Erase(evt.touches[0].clientX, evt.touches[0].clientY);
+      this.Erase(evt.touches[0].clientX - rect.left, evt.touches[0].clientY - rect.top);
     }
   }
 
@@ -519,36 +520,40 @@ export class DrawingCanvasComponent implements OnInit {
       this.myEraserPointer.nativeElement.style.display = "none";
     }
 
+    var rect = this.myDivDrawingBlock.nativeElement.getBoundingClientRect();
+
     if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
-      this.Draw(evt.touches[0].clientX, evt.touches[0].clientY);
+      this.Draw(evt.touches[0].clientX - rect.left, evt.touches[0].clientY - rect.top);
     }
-    else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
-      this.Erase(evt.touches[0].clientX, evt.touches[0].clientY);
+    else if(this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
+      this.Erase(evt.touches[0].clientX - rect.left, evt.touches[0].clientY - rect.top);
     }
   }
 
   touchMove(evt: TouchEvent): void {
+    var rect = this.myDivDrawingBlock.nativeElement.getBoundingClientRect();
+
+    this.lastCanvasX = evt.touches[0].clientX - rect.left;
+    this.lastCanvasY = evt.touches[0].clientY - rect.top;
+
     if(this.mouseDownFlag) {
       if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
-        this.Draw(evt.touches[0].clientX, evt.touches[0].clientY);
+        this.Draw(this.lastCanvasX, this.lastCanvasY);
       }
       else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
-        this.Erase(evt.touches[0].clientX, evt.touches[0].clientY);
+        this.Erase(this.lastCanvasX, this.lastCanvasY);
       }
     }
 
     if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
       // Get the div to follow the mouse
-      this.myBrushPointer.nativeElement.style.left = String(evt.touches[0].clientX) + "px";
-      this.myBrushPointer.nativeElement.style.top = String(evt.touches[0].clientY) + "px";
+      this.myBrushPointer.nativeElement.style.left = String(this.lastCanvasX) + "px";
+      this.myBrushPointer.nativeElement.style.top = String(this.lastCanvasY) + "px";
     }
     else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
-      this.myEraserPointer.nativeElement.style.left = String(evt.touches[0].clientX) + "px";
-      this.myEraserPointer.nativeElement.style.top = String(evt.touches[0].clientY) + "px";
+      this.myEraserPointer.nativeElement.style.left = String(this.lastCanvasX) + "px";
+      this.myEraserPointer.nativeElement.style.top = String(this.lastCanvasY) + "px";
     }
-
-    this.lastCanvasX = evt.touches[0].clientX;
-    this.lastCanvasY = evt.touches[0].clientY;
   }
 
   mouseLeave(evt: MouseEvent): void {
