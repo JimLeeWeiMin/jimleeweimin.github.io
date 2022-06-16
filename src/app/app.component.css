@@ -1,6 +1,28 @@
+/* PC */
+@media screen and 
+(min-width: 1280px) {
+    .RouterDiv {
+        width: 95%;
+        height: 100%;
+        left: 5%;
+        position: absolute;
+    }
+}
+
+/* Tablet */
+@media screen and
+(min-width: 601px) and
+(max-width: 1279px) {
+    .RouterDiv {
+        width: 95%;
+        height: 100%;
+        position: absolute;
+    }
+}
+
+/* Mobile */
 .RouterDiv {
     width: 95%;
     height: 100%;
-    left: 5%;
     position: absolute;
 }

@@ -1,64 +1,89 @@
+
+/* PC */
+@media 
+    screen and 
+    (min-width: 1280px) 
+    {
+        .SideNavComponent {
+            width: 5%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #800080;
+            position: fixed;
+        
+            /* Adjust the box to the middle */
+            justify-content: center;
+            display: flex;
+        
+            /* Adds a white border to the right */
+            /* border-right: 3px solid white; */
+        
+            /* Brings it to front */
+            z-index: 10;
+        }
+        
+        .IconComponent {
+            /* background-color: black; */
+            width: 50%;
+            height: 100%;
+        
+            padding-top: 20%;
+            padding-bottom: 20%;
+            padding-left: 20%;
+            padding-right: 20%;
+        
+            justify-content: center;
+            display: block;
+        }
+        
+        .IconComponent div {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .IconComponent a mat-icon {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            transform: scale(1,1);
+            color: aliceblue;
+        }
+        
+        .IconComponent a mat-icon:hover {
+            color:#52dc90;
+            
+            animation-name: gelatine;
+            animation-duration: 0.5s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+        
+        .gelatine {
+            animation: gelatine;
+            
+          }
+          @keyframes gelatine {
+            from {color: white} to { color: cyan; transform: scale(1, 1); }
+            25% { transform: scale(0.9, 1.1); }
+            50% { transform: scale(1.1, 0.9); }
+            75% { transform: scale(0.95, 1.05); }
+          }
+}
+
+/* Tablets */
+@media screen and
+(min-width: 601px) and
+(max-width: 1279px) {
+    .SideNavComponent {
+        display:none; 
+        width:10%;
+        height:0%;
+    }
+}
+
+/* Mobiles */
 .SideNavComponent {
-    width: 5%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: #800080;
-    position: fixed;
-
-    /* Adjust the box to the middle */
-    justify-content: center;
-    display: flex;
-
-    /* Adds a white border to the right */
-    /* border-right: 3px solid white; */
-
-    /* Brings it to front */
-    z-index: 10;
+    display:none; 
+    width:10%;
+    height:0%;
 }
-
-.IconComponent {
-    /* background-color: black; */
-    width: 50%;
-    height: 100%;
-
-    padding-top: 20%;
-    padding-bottom: 20%;
-    padding-left: 20%;
-    padding-right: 20%;
-
-    justify-content: center;
-    display: block;
-}
-
-.IconComponent div {
-    display: flex;
-    justify-content: center;
-}
-
-.IconComponent a mat-icon {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    transform: scale(1,1);
-    color: aliceblue;
-}
-
-.IconComponent a mat-icon:hover {
-    color:#52dc90;
-    
-    animation-name: gelatine;
-    animation-duration: 0.5s;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-}
-
-.gelatine {
-    animation: gelatine;
-    
-  }
-  @keyframes gelatine {
-    from {color: white} to { color: cyan; transform: scale(1, 1); }
-    25% { transform: scale(0.9, 1.1); }
-    50% { transform: scale(1.1, 0.9); }
-    75% { transform: scale(0.95, 1.05); }
-  }
