@@ -4,23 +4,6 @@
     background-color: black;
 }
 
-.WelcomeMessage {
-
-    /* Set the position of the wrapper */
-    position:absolute;
-    margin-top: 20%;
-    margin-left: 10%;
-
-    /* Set the div box size   */
-    width:60%;
-    height:40%;
-
-    /* Debugging */
-    /* background-color: beige; */
-
-    
-}
-
 .WelcomeMessage span {
     margin-top: 5%;
     margin-bottom: 5%;
@@ -33,6 +16,96 @@
     color: white;
     font-family: 'Open Sans', sans-serif;
 }
+
+@media screen and 
+(min-width: 1280px) 
+{
+    .WelcomeMessage {
+
+        /* Set the position of the wrapper */
+        position:absolute;
+        top: 40%;
+        left: 10%;
+    
+        /* Set the div box size   */
+        width:60%;
+        height:40%;
+    
+    }
+}
+
+@media screen and
+(min-width: 601px) and
+(max-width: 1279px) {
+
+    .WelcomeMessage {
+
+        /* Set the position of the wrapper */
+        position:absolute;
+        top: 40%;
+        left: 10%;
+    
+        /* Set the div box size   */
+        width:80%;
+        height:40%;
+
+        /* background-color: bisque; */
+    
+    }
+}
+
+@media screen and
+(min-width: 1px) and
+(max-width: 600px) {
+    .WelcomeMessage {
+
+        /* Set the position of the wrapper */
+        position:absolute;
+        top: 40%;
+        left: 10%;
+    
+        /* Set the div box size   */
+        width:80%;
+        height:40%;
+
+        /* background-color: bisque; */
+    
+    }
+
+    .WelcomeMessage span {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    
+        user-select:none;
+        display:inline-block;
+    
+        /* Set the font */
+        font-size: 50px;
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    @media screen and
+    (min-width: 1px) and
+    (max-width: 420px) {
+        
+        .WelcomeMessage span {
+            margin-top: 5%;
+            margin-bottom: 5%;
+        
+            user-select:none;
+            display:inline-block;
+        
+            /* Set the font */
+            font-size: 25px;
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+        }
+    }
+
+}
+
+
 
 .WelcomeMessage span.space {
     padding: 0 5px !important;
