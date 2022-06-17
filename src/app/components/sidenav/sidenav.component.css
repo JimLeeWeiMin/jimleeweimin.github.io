@@ -251,8 +251,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-        border: solid white;
     }
 
     .NavigationHeader {
@@ -274,6 +272,7 @@
 
     .NavigationChoicesWrapper > div {
         background-color: #800080;
+        border-top: solid white;
         border-bottom: solid white;
         border-right: solid white;
 
