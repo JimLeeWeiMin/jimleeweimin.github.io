@@ -306,7 +306,7 @@
 
     @media screen and
     (min-width: 1px) and
-    (max-width: 300px) {
+    (max-width: 420px) {
         .NavigationChoicesWrapper > div > a > div {
             display: none;
         }
