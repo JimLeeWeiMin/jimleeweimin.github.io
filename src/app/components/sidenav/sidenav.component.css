@@ -226,6 +226,91 @@
         width:10%;
         height:0%;
     }
+
+    .SideNavButtonWrapper {
+        display: none;
+    }
+
+    .TabletNavigationWrapper {
+        height: 10%;
+        width: 100%;
+
+        background-color:#800080;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .NavigationHeaderWrapper {
+        height: 50%;
+        width: 100%;
+        /* background-color: #52dc90; */
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: solid white;
+    }
+
+    .NavigationHeader {
+        font-size: 20px;
+        color: rgb(225, 225, 225);
+
+        font-weight: bold;
+    }
+
+    .NavigationChoicesWrapper {
+        height: 50%;
+        width: 100%;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+
+    .NavigationChoicesWrapper > div {
+        background-color: #800080;
+        border-bottom: solid white;
+        border-right: solid white;
+
+        border-width: 2px;
+
+        display:flex;
+        align-items: center;
+        justify-content: center;
+ 
+        width: 25%;
+        height: 100%;
+    }
+
+    .NavigationChoicesWrapper > div:last-child {
+        border-right: none;
+    }
+
+    .NavigationChoicesWrapper > div > a {
+        width: 50%;
+
+        display:flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+
+        text-decoration: none;
+
+        color: rgb(225, 225, 225);;
+    }
+
+    @media screen and
+    (min-width: 1px) and
+    (max-width: 300px) {
+        .NavigationChoicesWrapper > div > a > div {
+            display: none;
+        }
+    }
 }
 
 
