@@ -12,7 +12,7 @@ export class ScatterStuffComponent implements OnInit {
 
   iconArrowDown = faAngleDown;
 
-  num: number = 3;
+  num: number = 1;
   currentMax: number = 3;
 
   name:string = "";
