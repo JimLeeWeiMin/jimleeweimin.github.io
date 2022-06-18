@@ -9,12 +9,10 @@
 .RightColumnWrapper {
     width: 20%;
     height: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
 
     /* Move the wrapper to the right side  */
-    float:right;
-
-    
+    float: right;
 }
 
 .InfoColumn {
@@ -57,8 +55,6 @@
 }
 
 .PageSelect {
-    
-
     font-size: 20px;
     color: gray;
 
@@ -81,11 +77,6 @@
     right: 15%;
     color: gray;
 }
-
-/* .SelectPageLabelWrapper:after {
-    content: "\f107";
-    font-family: FontAwesome;
-} */
 
 
 .PageNumberWrapper {
@@ -113,7 +104,174 @@
     color: gray;
 }
 
-.Testclass {
-    background-color: cyan;
-    color: white;
+@media screen and
+(min-width: 601px) and
+(max-width: 1279px) {
+    .RightColumnWrapper {
+        width: 20%;
+        height: 95%;
+        /* background-color: aqua; */
+    
+        /* Move the wrapper to the right side  */
+        float: right;
+        top: 5%;
+    }
+
+    .PageNumberWrapper {
+        font-size: 30px;
+    
+        /* background-color: green; */
+    
+        color: gray;
+    
+        position:relative;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    
+        height: 50%;
+        bottom:10%;
+    
+    }
+
+    .ArrowDownWrapper {
+        position: absolute;
+        right: 18%;
+        color: gray;
+    }
+    
+    .ArrowButton {
+        border: none;
+        background-color: white;
+        font-size: 25px;
+        width: 50%;
+        color: gray;
+    }
+
+    .PageSelect {
+        font-size: 15px;
+        color: gray;
+    
+        padding-left: 5%;
+        border-radius: 5px;
+    
+        width: 70%;
+        height: 20px;
+    
+        background-color: rgb(255, 255, 255);
+    
+        /* Remove the arrow */
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+}
+
+@media screen and
+(min-width: 1px) and
+(max-width: 600px) {
+    .RightColumnWrapper {
+        width: 100%;
+        height: 5%;
+
+        position: absolute;
+        top: 0%;
+        background-color: aqua;
+
+        z-index: 10;
+
+        /* Move the wrapper to the right side  */
+        /* float: right; */
+    }
+
+    .InfoColumn {
+        display: none;
+    }
+
+    .Pages {
+        position:relative;
+        display:flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+
+        height: 100%;
+        width: 100%;
+    }
+
+    .PageSelectWrapper {
+        /* background-color: aqua; */
+        
+        position: relative;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    
+        height: 100%;
+        width: 100%;
+        top:0%;
+
+        
+        /* outline: 1px solid rgb(219, 219, 219); */
+    }
+
+    .PageSelect {
+        font-size: 15px;
+        color: gray;
+
+        border-radius: 5px;
+
+        width: 50%;
+        height: 20px;
+
+       
+
+        background-color: rgb(255, 255, 255);
+
+        /* Remove the arrow */
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .ArrowDownWrapper {
+        position: absolute;
+        right: 30%;
+        color: gray;
+    }
+
+    .PageNumberWrapper {
+        font-size: 20px;
+    
+        /* background-color: green; */
+    
+        color: gray;
+    
+        position:relative;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    
+        height: 100%;
+        width: 100%;
+
+        bottom: 0%;
+    }
+
+    .ArrowButton {
+        border: none;
+        background-color: white;
+        font-size: 20px;
+        width: 50%;
+        color: gray;
+    }
+
+    .MyStuffWrapper {
+        width: 100%;
+        height:100%;
+        background-color: black;
+        position: relative;
+    
+        outline: 1px solid rgb(167, 167, 167);
+    }
 }
