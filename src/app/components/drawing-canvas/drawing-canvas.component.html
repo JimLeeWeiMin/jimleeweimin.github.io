@@ -3,49 +3,43 @@
     <div class="EraserPointer" #EraserPointer></div>
 </div>
 
-
-<div class="ToolBarWrapper">
-    
-    <div class="ToolTipWrapper">
-        <div class="ToolNameSwatches"><a>Swatches</a></div>
-        <div class="ToolNameColorGradient"><a>Color Gradient</a></div>
-        <div class="ToolNameMultiColor"><a>Color</a></div>
-        <div class="ToolNameTool"><a>Tools</a></div>
-    </div>
-    
-    <div class="AllToolsWrapper">
-        
-        <div class="ColorPickerWrapper">
-            <div class="SwatchesWrapper">
-                <div class="SwatchesFront" #divCanvasColorSelected>
-                    <canvas #canvasColorSelected></canvas>
-                </div>
-                <div class="SwatchesBack" #divSwatchesBack>
-                </div>
-                <div class="SwatchesSwitch" (click)="SwapSwatches()" #divSwatchesSwitch>
-                    <fa-icon [icon]="iconSwitch"></fa-icon>
-                    <span class="SwatchesSwitchToolTip">Switches Foreground and Background Color (X)</span>
-                </div>
-            </div>
-            
-            <div class="ColorGradient" #divCanvasColorGradientSelector (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)">
-                <canvas #canvasColorGradientSelector></canvas>
-            </div>
-            <div class="MultiColor" #divCanvasMultiColor (mousedown)="multiColorPickerDown($event)" (mouseup)="multiColorPickerUp($event)" (mousemove)="multiColorPickerMove($event)">
-                <canvas #canvasMultiColor></canvas>
-            </div>
-            
-
-                        
+<div class="ToolWrapper">
+    <div class="Swatches">
+        <div class="Title">
+            <span>Swatches</span>
         </div>
-
-        <div class="BrushWrapper">
-            <div class="FileTitleLineWrapper">
-                <div class="FileTitleLine"><hr></div>
-                <div class="FileTitleText">Brush</div>
-                <div class="FileTitleLine"><hr></div>
+        <div>
+            <div class="SwatchesFront" #divCanvasColorSelected>
+                <canvas #canvasColorSelected></canvas>
             </div>
-
+            <div class="SwatchesBack" #divSwatchesBack>
+            </div>
+            <div class="SwatchesSwitch" (click)="SwapSwatches()" #divSwatchesSwitch>
+                <fa-icon [icon]="iconSwitch"></fa-icon>
+                <span class="SwatchesSwitchToolTip">Switches Foreground and Background Color (X)</span>
+            </div>
+        </div>
+    </div>
+    <div class="ColorGradient">
+        <div class="Title">
+            <span>Color Gradient</span>
+        </div>
+        <div>
+            <div class="ColorPickerWrapper">  
+                <div class="ColorGradientDiv" #divCanvasColorGradientSelector (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)">
+                    <canvas #canvasColorGradientSelector></canvas>
+                </div>
+                <div class="MultiColor" #divCanvasMultiColor (mousedown)="multiColorPickerDown($event)" (mouseup)="multiColorPickerUp($event)" (mousemove)="multiColorPickerMove($event)">
+                    <canvas #canvasMultiColor></canvas>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <div class="Brush">
+        <div class="Title">
+            <span>Brush</span>
+        </div>
+        <div class="BrushWrapper">
             <div class="BrushSizeWrapper">
                 <div class="BrushSize"> 
                     Brush Size
@@ -72,16 +66,13 @@
                     <span class="EraserSwitchToolTip">Eraser Tool (E)</span>
                 </div>
             </div>
-
-
         </div>
-
+    </div>
+    <div class="File">
+        <div class="Title">
+            <span>File</span>
+        </div>
         <div class="FileWrapper">
-            <div class="FileTitleLineWrapper">
-                <div class="FileTitleLine"><hr></div>
-                <div class="FileTitleText">File</div>
-                <div class="FileTitleLine"><hr></div>
-            </div>
             <div class="ClearCanvasButtonWrapper">
                 <button class="ClearCanvasButton" (click)="ClearCanvas()">Clear</button>
             </div>
@@ -89,12 +80,9 @@
                 <button class="SaveCanvasButton" (click)="DownloadCanvas()">Download</button>
             </div>
         </div>
-
-        
-
     </div>
-
 </div>
+
 <div class="DrawingCanvasWrapper" #MyDivCanvas >
     <canvas #canvasEl (mouseleave)="mouseLeave($event)" (mouseenter)="mouseEnter($event)" (mouseup)="mouseUp($event)" (mousedown)="mouseDown($event)" (mousemove)="mouseMove($event)" (touchstart)="touchStart($event)" (touchend)="touchEnd($event)" (touchmove)="touchMove($event)"></canvas>
 </div>

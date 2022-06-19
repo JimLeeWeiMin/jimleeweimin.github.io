@@ -26,7 +26,6 @@
         </div>
     </div>
     
-    <!-- <div class="MyStuffWrapper" (mousemove)="getMousePos($event)"> -->
     <div class="MyStuffWrapper" [ngSwitch]="num">
         <app-particle-emitter *ngSwitchCase="1" ></app-particle-emitter>
         <app-drawing-canvas *ngSwitchCase="2" ></app-drawing-canvas>
