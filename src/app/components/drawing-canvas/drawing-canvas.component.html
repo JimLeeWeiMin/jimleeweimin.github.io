@@ -8,7 +8,7 @@
         <div class="Title">
             <span>Swatches</span>
         </div>
-        <div>
+        <div class="SwatchesFunction">
             <div class="SwatchesFront" #divCanvasColorSelected>
                 <canvas #canvasColorSelected></canvas>
             </div>
@@ -24,7 +24,7 @@
         <div class="Title">
             <span>Color Gradient</span>
         </div>
-        <div>
+        <div class="ColorFunction">
             <div class="ColorPickerWrapper">  
                 <div class="ColorGradientDiv" #divCanvasColorGradientSelector (mousedown)="colorPickerDown($event)" (mouseup)="colorPickerUp($event)" (mousemove)="colorPickerMove($event)">
                     <canvas #canvasColorGradientSelector></canvas>
