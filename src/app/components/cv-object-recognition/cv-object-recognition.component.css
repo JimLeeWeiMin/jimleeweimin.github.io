@@ -1,0 +1,21 @@
+.cvObjectRecognition {
+    height: 100%;
+    width: 100%;
+}
+
+.Content {
+    position:relative;
+    left: 20%;
+    right: 20%;
+    top: 10%;
+}
+
+.H1Title {
+    position: relative;
+    left:10%;
+    right:10%;
+}
+
+.H1Title h1 {
+    font-size: 50px;
+}

@@ -16,6 +16,10 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { ParticleEmitterComponent } from './components/particle-emitter/particle-emitter.component';
 import { DrawingCanvasComponent } from './components/drawing-canvas/drawing-canvas.component';
 import { PathfindingMazeComponent } from './components/pathfinding-maze/pathfinding-maze.component';
+import { CvObjectRecognitionComponent } from './components/cv-object-recognition/cv-object-recognition.component';
+import { CvFlyTheCoopComponent } from './components/cv-fly-the-coop/cv-fly-the-coop.component';
+import { CvSecondScholarComponent } from './components/cv-second-scholar/cv-second-scholar.component';
+import { CvTaggerComponent } from './components/cv-tagger/cv-tagger.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,10 @@ import { PathfindingMazeComponent } from './components/pathfinding-maze/pathfind
     ParticleEmitterComponent,
     DrawingCanvasComponent,
     PathfindingMazeComponent,
+    CvObjectRecognitionComponent,
+    CvFlyTheCoopComponent,
+    CvSecondScholarComponent,
+    CvTaggerComponent,
   ],
   imports: [
     BrowserModule,
