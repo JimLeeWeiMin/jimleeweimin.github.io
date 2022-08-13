@@ -20,6 +20,7 @@ import { CvObjectRecognitionComponent } from './components/cv-object-recognition
 import { CvFlyTheCoopComponent } from './components/cv-fly-the-coop/cv-fly-the-coop.component';
 import { CvSecondScholarComponent } from './components/cv-second-scholar/cv-second-scholar.component';
 import { CvTaggerComponent } from './components/cv-tagger/cv-tagger.component';
+import { ImageViewerComponent } from './components/image-viewer/image-viewer.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CvTaggerComponent } from './components/cv-tagger/cv-tagger.component';
     CvFlyTheCoopComponent,
     CvSecondScholarComponent,
     CvTaggerComponent,
+    ImageViewerComponent,
   ],
   imports: [
     BrowserModule,

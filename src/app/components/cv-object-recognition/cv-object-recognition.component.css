@@ -5,6 +5,7 @@
 
 .Content {
     position:relative;
+    width: 1000px;
     left: 20%;
     right: 20%;
     top: 10%;
@@ -12,8 +13,7 @@
 
 .H1Title {
     position: relative;
-    left:10%;
-    right:10%;
+    text-align: center;
 }
 
 .H1Title h1 {
