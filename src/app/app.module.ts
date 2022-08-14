@@ -21,6 +21,9 @@ import { CvFlyTheCoopComponent } from './components/cv-fly-the-coop/cv-fly-the-c
 import { CvSecondScholarComponent } from './components/cv-second-scholar/cv-second-scholar.component';
 import { CvTaggerComponent } from './components/cv-tagger/cv-tagger.component';
 import { ImageViewerComponent } from './components/image-viewer/image-viewer.component';
+import { CvIntelligentTutoringSystemComponent } from './components/cv-intelligent-tutoring-system/cv-intelligent-tutoring-system.component';
+import { CvGapYearComponent } from './components/cv-gap-year/cv-gap-year.component';
+import { CvAvensysSWEComponent } from './components/cv-avensys-swe/cv-avensys-swe.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { ImageViewerComponent } from './components/image-viewer/image-viewer.com
     CvSecondScholarComponent,
     CvTaggerComponent,
     ImageViewerComponent,
+    CvIntelligentTutoringSystemComponent,
+    CvGapYearComponent,
+    CvAvensysSWEComponent,
   ],
   imports: [
     BrowserModule,
