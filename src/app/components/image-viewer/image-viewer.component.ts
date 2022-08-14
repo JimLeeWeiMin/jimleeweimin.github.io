@@ -11,8 +11,6 @@ import { faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 export class ImageViewerComponent implements OnInit {
 
   @Input() imageArrInput: Array<string> = [];
-  @Input() largeImageWidthInput: number = 0;
-  @Input() largeImageHeightInput: number = 0;
 
   public ImageArr: Array<ImageContainer> = [];
   public LargeImageWidth: number = 0;
@@ -32,7 +30,6 @@ export class ImageViewerComponent implements OnInit {
   iconArrowRight = faArrowRight;
 
   private HeightScale : number = 0.6;
-  private WidthScale : number = 0.5;
 
   // Resize event
   @HostListener('window:resize', ['$event'])
@@ -59,29 +56,11 @@ export class ImageViewerComponent implements OnInit {
     this.ImageArr.unshift( new ImageContainer(this.imageArrInput[sz-1], this.imageArrInput[sz-1].substring(this.imageArrInput[sz-1].lastIndexOf("/")+1)));
     this.ImageArr.push( new ImageContainer(this.imageArrInput[0], this.imageArrInput[0].substring(this.imageArrInput[0].lastIndexOf("/")+1)) );
 
-    
-      
+    this.LargeImageHeight = window.innerHeight * this.HeightScale;
+    this.LargeImageWidth = document.getElementsByClassName("LargeViewerContainer")[0].clientWidth;
   }
 
   ngAfterViewInit(): void {
-
-    //Set the image size
-    if(this.largeImageHeightInput != 0) {
-      this.LargeImageHeight = this.largeImageHeightInput;
-    }
-    else {
-      this.LargeImageHeight = window.innerHeight * this.HeightScale;
-      //console.log("Height: " + window.innerHeight);
-    }
-
-    if(this.largeImageWidthInput != 0) {
-      this.LargeImageWidth = this.largeImageWidthInput;
-    }
-    else {
-      this.LargeImageWidth = this.LargeViewerContainerDiv.nativeElement.clientWidth; //window.innerWidth;// * this.WidthScale;
-      //console.log("Width: " + window.innerWidth);
-    }
-
     this.SetImageWidth();
 
     this.LargeViewerLength = this.ImageArr.length;
@@ -94,8 +73,8 @@ export class ImageViewerComponent implements OnInit {
     let y: number = this.LargeImageHeight;
 
     this.LargeViewerDiv.forEach(function(val) {
-      val.nativeElement.style.maxWidth = x + "px";
-      val.nativeElement.style.maxHeight = y + "px";
+      val.nativeElement.style.Width = x + "px";
+      val.nativeElement.style.Height = y + "px";
     });
   }
 
