@@ -12,3 +12,27 @@
     justify-content:flex-start;
     overflow: hidden;
 }
+
+.ButtonLeft {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    left: -10%;
+    font-size: 50px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.ButtonRight {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    right: -10%;
+    font-size: 50px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

@@ -1,11 +1,14 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, Input, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 
+import { faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-image-viewer',
   templateUrl: './image-viewer.component.html',
   styleUrls: ['./image-viewer.component.css']
 })
+
 export class ImageViewerComponent implements OnInit {
 
   @Input() imageArrInput: Array<string> = [];
@@ -17,6 +20,10 @@ export class ImageViewerComponent implements OnInit {
   public CurrentSmallViewerIndex: number = 0;
 
   private SmallViewerLength = 0;
+
+  //Icon
+  iconArrowLeft = faArrowLeft;
+  iconArrowRight = faArrowRight;
 
   constructor() { }
 
@@ -92,8 +99,6 @@ export class ImageViewerComponent implements OnInit {
 
   }
 }
-
-
 
 class ImageContainer {
   imgSrc: string;

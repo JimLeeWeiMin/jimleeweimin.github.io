@@ -2,11 +2,18 @@
     <div class="MainViewer">
         <div id="MainImage"></div>
     </div>
-    <div class="SmallViewer">
-        <div class="SmallViewerImages" *ngFor="let elem of ImageArr" (transitionend)="SmallViewerTransitionEnd($event)" #SmallViewer  >
-            <img src={{elem.getSrc()}} alt={{elem.getAlt()}} border="0" height="600" width="1000" >
+    <div class="SmallViewerContainer">
+        <button class="ButtonLeft" (click)="ClickLeft()"  >
+            <fa-icon [icon]="iconArrowLeft"></fa-icon>
+        </button>
+        <button class="ButtonRight" (click)="ClickRight()" >
+            <fa-icon [icon]="iconArrowRight"></fa-icon>
+        </button>
+        <div class="SmallViewer">
+            <div class="SmallViewerImages" *ngFor="let elem of ImageArr" (transitionend)="SmallViewerTransitionEnd($event)" #SmallViewer  >
+                <img src={{elem.getSrc()}} alt={{elem.getAlt()}} border="0" height="600" width="1000" >
+            </div>
         </div>
     </div>
-    <button class="ButtonLeft" (click)="ClickLeft()"  >Left</button>
-    <button class="ButtonRight" (click)="ClickRight()" >Right</button>
+    
 </div>
