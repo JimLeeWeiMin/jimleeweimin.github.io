@@ -35,7 +35,8 @@ export class ImageViewerComponent implements OnInit {
   iconArrowLeft = faArrowLeft;
   iconArrowRight = faArrowRight;
 
-  private HeightScale : number = 0.6;
+  //Throttle the clicks for the arrow left and right
+  private isArrowClick: boolean = false;
 
   // Resize event
   @HostListener('window:resize', ['$event'])
@@ -95,14 +96,21 @@ export class ImageViewerComponent implements OnInit {
   }
 
   ClickLeft() : void {
-    this.CurrentLargeViewerIndex -= 1;
 
-    let n: number = -this.LargeImageWidth * this.CurrentLargeViewerIndex;
+    if(this.isArrowClick === false) {
+      this.CurrentLargeViewerIndex -= 1;
+
+      let n: number = -this.LargeImageWidth * this.CurrentLargeViewerIndex;
+      
+      this.LargeViewerDiv.forEach(function(val) {
+        val.nativeElement.style.transition = "transform 0.4s ease-in-out";
+        val.nativeElement.style.transform = 'translateX('+ (n) +'px)';
+      });
+
+      this.isArrowClick = true;
+    }
+
     
-    this.LargeViewerDiv.forEach(function(val) {
-      val.nativeElement.style.transition = "transform 0.4s ease-in-out";
-      val.nativeElement.style.transform = 'translateX('+ (n) +'px)';
-    });
     
   }
 
@@ -130,17 +138,26 @@ export class ImageViewerComponent implements OnInit {
 
       this.CurrentLargeViewerIndex = 1;
     }
+
+    this.isArrowClick = false;
   }
 
   ClickRight(): void {
-    this.CurrentLargeViewerIndex += 1;
 
-    let n: number = -this.LargeImageWidth * this.CurrentLargeViewerIndex;
+    if(this.isArrowClick === false) {
+      this.CurrentLargeViewerIndex += 1;
+
+      let n: number = -this.LargeImageWidth * this.CurrentLargeViewerIndex;
+      
+      this.LargeViewerDiv.forEach(function(val) {
+        val.nativeElement.style.transition = "transform 0.4s ease-in-out";
+        val.nativeElement.style.transform = 'translateX('+ (n) +'px)';
+      });
+
+      this.isArrowClick = true;
+    }
+
     
-    this.LargeViewerDiv.forEach(function(val) {
-      val.nativeElement.style.transition = "transform 0.4s ease-in-out";
-      val.nativeElement.style.transform = 'translateX('+ (n) +'px)';
-    });
   }
 }
 
