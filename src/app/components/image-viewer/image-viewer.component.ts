@@ -11,8 +11,8 @@ import { faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 export class ImageViewerComponent implements OnInit {
 
   @Input() imageArrInput: Array<string> = [];
-  @Input() largeImageWidthInput: number = 1000;
-  @Input() largeImageHeightInput: number = 600;
+  @Input() largeImageWidthInput: number = 0;
+  @Input() largeImageHeightInput: number = 0;
 
   public ImageArr: Array<ImageContainer> = [];
   public LargeImageWidth: number = 0;
@@ -28,11 +28,17 @@ export class ImageViewerComponent implements OnInit {
   iconArrowLeft = faArrowLeft;
   iconArrowRight = faArrowRight;
 
+  private HeightScale : number = 0.6;
+  private WidthScale : number = 0.6;
+
   // Resize event
   @HostListener('window:resize', ['$event'])
   getScreenSize(e: Event) {
-    this.LargeImageHeight = window.innerHeight * 0.4;
-    this.LargeImageWidth = window.innerWidth * 0.6;
+    this.LargeImageHeight = window.innerHeight * this.HeightScale;
+    this.LargeImageWidth = window.innerWidth * this.WidthScale;
+
+    console.log("Height: " + window.innerHeight);
+    console.log("Width: " + window.innerWidth);
   }
 
   constructor() { }
@@ -52,15 +58,22 @@ export class ImageViewerComponent implements OnInit {
     this.ImageArr.push( new ImageContainer(this.imageArrInput[0], this.imageArrInput[0].substring(this.imageArrInput[0].lastIndexOf("/")+1)) );
 
     //Set the image size
-    if(this.largeImageHeightInput != 0)
+    if(this.largeImageHeightInput != 0) {
       this.LargeImageHeight = this.largeImageHeightInput;
-    else
-      this.LargeImageHeight = window.innerHeight * 0.4;
+    }
+    else {
+      this.LargeImageHeight = window.innerHeight * this.HeightScale;
+      console.log("Height: " + window.innerHeight);
+    }
 
-    if(this.largeImageWidthInput != 0)
+    if(this.largeImageWidthInput != 0) {
       this.LargeImageWidth = this.largeImageWidthInput;
-    else
-      this.LargeImageHeight = window.innerWidth * 0.6;
+    }
+    else {
+      this.LargeImageWidth = window.innerWidth * this.WidthScale;
+      console.log("Width: " + window.innerWidth);
+    }
+      
   }
 
   ngAfterViewInit(): void {

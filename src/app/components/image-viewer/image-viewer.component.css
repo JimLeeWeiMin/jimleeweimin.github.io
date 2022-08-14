@@ -15,11 +15,11 @@
 
 .ButtonLeft {
     position: absolute;
-    top: 50%;
+    top: 35%;
     z-index: 10;
     left: -10%;
     font-size: 50px;
-    color: white;
+    color: black;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -27,11 +27,11 @@
 
 .ButtonRight {
     position: absolute;
-    top: 50%;
+    top: 35%;
     z-index: 10;
     right: -10%;
     font-size: 50px;
-    color: white;
+    color: black;
     background-color: transparent;
     border: none;
     cursor: pointer;

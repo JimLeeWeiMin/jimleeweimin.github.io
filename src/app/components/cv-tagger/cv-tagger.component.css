@@ -1,4 +1,21 @@
-.cvTagger {
-    height: 100%;
+.cvSecondScholar {
+    height: auto;
     width: 100%;
+}
+
+.Content {
+    position:relative;
+    width: 1000px;
+    left: 20%;
+    right: 20%;
+    top: 10%;
+}
+
+.H1Title {
+    position: relative;
+    text-align: center;
+}
+
+.H1Title h1 {
+    font-size: 50px;
 }
