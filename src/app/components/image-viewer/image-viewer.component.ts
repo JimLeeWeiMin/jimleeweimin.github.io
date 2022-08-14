@@ -91,8 +91,19 @@ export class ImageViewerComponent implements OnInit {
     });
 
     // Set button left and right
-    this.ButtonLeftDiv.nativeElement.style.top = ((tHeight+50)/2) + "px";
-    this.ButtonRightDiv.nativeElement.style.top = ((tHeight+50)/2) + "px";
+    let cTop: number = 50;
+    if(tWidth <= 600) {
+      cTop = 30;
+    }
+    else if(tWidth <= 1279) {
+      cTop = 50;
+    }
+
+    this.ButtonLeftDiv.nativeElement.style.fontSize = cTop + "px";
+    this.ButtonRightDiv.nativeElement.style.fontSize = cTop + "px";
+
+    this.ButtonLeftDiv.nativeElement.style.top = ((tHeight+cTop)/2) + "px";
+    this.ButtonRightDiv.nativeElement.style.top = ((tHeight+cTop)/2) + "px";
   }
 
   ClickLeft() : void {
