@@ -23,6 +23,12 @@ export class ImageViewerComponent implements OnInit {
   @ViewChild('LargeViewerContainer')
   private LargeViewerContainerDiv: ElementRef = {} as ElementRef;
 
+  @ViewChild('ButtonLeft')
+  private ButtonLeftDiv: ElementRef = {} as ElementRef;
+
+  @ViewChild('ButtonRight')
+  private ButtonRightDiv: ElementRef = {} as ElementRef;
+
   private LargeViewerLength = 0;
 
   //Icon
@@ -34,8 +40,8 @@ export class ImageViewerComponent implements OnInit {
   // Resize event
   @HostListener('window:resize', ['$event'])
   getScreenSize(e: Event) {
-    this.LargeImageHeight = window.innerHeight * this.HeightScale;
-    this.LargeImageWidth = this.LargeViewerContainerDiv.nativeElement.clientWidth;//window.innerWidth;// * this.WidthScale;
+    this.LargeImageHeight = document.getElementsByClassName("LargeViewerContainer")[0].clientHeight;//window.innerHeight * this.HeightScale;
+    this.LargeImageWidth = document.getElementsByClassName("LargeViewerContainer")[0].clientWidth;//window.innerWidth;// * this.WidthScale;
 
     this.SetImageWidth();
   }
@@ -56,7 +62,7 @@ export class ImageViewerComponent implements OnInit {
     this.ImageArr.unshift( new ImageContainer(this.imageArrInput[sz-1], this.imageArrInput[sz-1].substring(this.imageArrInput[sz-1].lastIndexOf("/")+1)));
     this.ImageArr.push( new ImageContainer(this.imageArrInput[0], this.imageArrInput[0].substring(this.imageArrInput[0].lastIndexOf("/")+1)) );
 
-    this.LargeImageHeight = window.innerHeight * this.HeightScale;
+    this.LargeImageHeight = document.getElementsByClassName("LargeViewerContainer")[0].clientHeight//window.innerHeight * this.HeightScale;
     this.LargeImageWidth = document.getElementsByClassName("LargeViewerContainer")[0].clientWidth;
   }
 
@@ -68,10 +74,13 @@ export class ImageViewerComponent implements OnInit {
   }
 
   SetImageWidth(): void {
-    // Set the css so it will maintain aspect ratio
-    this.LargeImageHeight = window.innerHeight * this.HeightScale;
-    this.LargeImageWidth = document.getElementsByClassName("LargeViewerContainer")[0].clientWidth;
-    
+    // Set the css so it will maintain aspect ratio of 4:3
+    let tWidth: number = document.getElementsByClassName("LargeViewerContainer")[0].clientWidth;
+    let tHeight: number = (tWidth/4) * 3;
+
+    this.LargeImageHeight = tHeight;//window.innerHeight * this.HeightScale;
+    this.LargeImageWidth = tWidth;
+
     let x: number = this.LargeImageWidth;
     let y: number = this.LargeImageHeight;
 
@@ -79,6 +88,10 @@ export class ImageViewerComponent implements OnInit {
       val.nativeElement.style.Width = x + "px";
       val.nativeElement.style.Height = y + "px";
     });
+
+    // Set button left and right
+    this.ButtonLeftDiv.nativeElement.style.top = ((tHeight+50)/2) + "px";
+    this.ButtonRightDiv.nativeElement.style.top = ((tHeight+50)/2) + "px";
   }
 
   ClickLeft() : void {

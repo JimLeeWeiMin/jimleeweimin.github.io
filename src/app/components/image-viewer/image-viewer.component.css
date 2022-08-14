@@ -20,9 +20,9 @@
 
 .ButtonLeft {
     position: absolute;
-    top: 35%;
+    /* top: 50%; */
     z-index: 10;
-    left: -10%;
+    left: -20%;
     font-size: 50px;
     color: black;
     background-color: transparent;
@@ -32,9 +32,9 @@
 
 .ButtonRight {
     position: absolute;
-    top: 35%;
+    /* top: 50%; */
     z-index: 10;
-    right: -10%;
+    right: -20%;
     font-size: 50px;
     color: black;
     background-color: transparent;
