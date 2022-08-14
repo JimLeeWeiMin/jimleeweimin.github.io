@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, ViewChildren, QueryList, HostListener } from '@angular/core';
 
 import { faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 
@@ -11,9 +11,12 @@ import { faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 export class ImageViewerComponent implements OnInit {
 
   @Input() imageArrInput: Array<string> = [];
+  @Input() largeImageWidthInput: number = 1000;
+  @Input() largeImageHeightInput: number = 600;
 
   public ImageArr: Array<ImageContainer> = [];
-  public ImageSize: number = 1000;
+  public LargeImageWidth: number = 0;
+  public LargeImageHeight: number = 0;
 
   @ViewChildren('LargeViewer') 
   private LargeViewerDiv : QueryList<ElementRef> = {} as QueryList<ElementRef>;
@@ -24,6 +27,13 @@ export class ImageViewerComponent implements OnInit {
   //Icon
   iconArrowLeft = faArrowLeft;
   iconArrowRight = faArrowRight;
+
+  // Resize event
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(e: Event) {
+    this.LargeImageHeight = window.innerHeight * 0.4;
+    this.LargeImageWidth = window.innerWidth * 0.6;
+  }
 
   constructor() { }
 
@@ -41,7 +51,16 @@ export class ImageViewerComponent implements OnInit {
     this.ImageArr.unshift( new ImageContainer(this.imageArrInput[sz-1], this.imageArrInput[sz-1].substring(this.imageArrInput[sz-1].lastIndexOf("/")+1)));
     this.ImageArr.push( new ImageContainer(this.imageArrInput[0], this.imageArrInput[0].substring(this.imageArrInput[0].lastIndexOf("/")+1)) );
 
-    
+    //Set the image size
+    if(this.largeImageHeightInput != 0)
+      this.LargeImageHeight = this.largeImageHeightInput;
+    else
+      this.LargeImageHeight = window.innerHeight * 0.4;
+
+    if(this.largeImageWidthInput != 0)
+      this.LargeImageWidth = this.largeImageWidthInput;
+    else
+      this.LargeImageHeight = window.innerWidth * 0.6;
   }
 
   ngAfterViewInit(): void {
@@ -52,7 +71,7 @@ export class ImageViewerComponent implements OnInit {
   ClickLeft() : void {
     this.CurrentLargeViewerIndex -= 1;
 
-    let n: number = -this.ImageSize * this.CurrentLargeViewerIndex;
+    let n: number = -this.LargeImageWidth * this.CurrentLargeViewerIndex;
     
     this.LargeViewerDiv.forEach(function(val) {
       val.nativeElement.style.transition = "transform 0.4s ease-in-out";
@@ -64,7 +83,7 @@ export class ImageViewerComponent implements OnInit {
   LargeViewerTransitionEnd(e: Event): void {
     //If this is the first index, rotate to n-1
     if(this.CurrentLargeViewerIndex === 0) {
-      let n: number = -this.ImageSize * this.imageArrInput.length-1;
+      let n: number = -this.LargeImageWidth * this.imageArrInput.length-1;
 
       this.LargeViewerDiv.forEach(function(val) {
         val.nativeElement.style.transition = "none";
@@ -76,7 +95,7 @@ export class ImageViewerComponent implements OnInit {
 
     //If this is the n-1, rotate to the index 1
     else if(this.CurrentLargeViewerIndex === this.LargeViewerLength-1) {
-      let n: number = -this.ImageSize * 1;
+      let n: number = -this.LargeImageWidth * 1;
 
       this.LargeViewerDiv.forEach(function(val) {
         val.nativeElement.style.transition = "none";
@@ -90,7 +109,7 @@ export class ImageViewerComponent implements OnInit {
   ClickRight(): void {
     this.CurrentLargeViewerIndex += 1;
 
-    let n: number = -this.ImageSize * this.CurrentLargeViewerIndex;
+    let n: number = -this.LargeImageWidth * this.CurrentLargeViewerIndex;
     
     this.LargeViewerDiv.forEach(function(val) {
       val.nativeElement.style.transition = "transform 0.4s ease-in-out";
