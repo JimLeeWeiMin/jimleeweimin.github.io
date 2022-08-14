@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, Input, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 
 import { faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
@@ -12,14 +11,15 @@ import { faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 export class ImageViewerComponent implements OnInit {
 
   @Input() imageArrInput: Array<string> = [];
+
   public ImageArr: Array<ImageContainer> = [];
   public ImageSize: number = 1000;
 
-  @ViewChildren('SmallViewer') 
-  private SmallViewerDiv : QueryList<ElementRef> = {} as QueryList<ElementRef>;
-  public CurrentSmallViewerIndex: number = 0;
+  @ViewChildren('LargeViewer') 
+  private LargeViewerDiv : QueryList<ElementRef> = {} as QueryList<ElementRef>;
+  public CurrentLargeViewerIndex: number = 0;
 
-  private SmallViewerLength = 0;
+  private LargeViewerLength = 0;
 
   //Icon
   iconArrowLeft = faArrowLeft;
@@ -45,54 +45,54 @@ export class ImageViewerComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.SmallViewerLength = this.ImageArr.length;
+    this.LargeViewerLength = this.ImageArr.length;
     this.ClickRight();
   }
 
   ClickLeft() : void {
-    this.CurrentSmallViewerIndex -= 1;
+    this.CurrentLargeViewerIndex -= 1;
 
-    let n: number = -this.ImageSize * this.CurrentSmallViewerIndex;
+    let n: number = -this.ImageSize * this.CurrentLargeViewerIndex;
     
-    this.SmallViewerDiv.forEach(function(val) {
+    this.LargeViewerDiv.forEach(function(val) {
       val.nativeElement.style.transition = "transform 0.4s ease-in-out";
       val.nativeElement.style.transform = 'translateX('+ (n) +'px)';
     });
     
   }
 
-  SmallViewerTransitionEnd(e: Event): void {
+  LargeViewerTransitionEnd(e: Event): void {
     //If this is the first index, rotate to n-1
-    if(this.CurrentSmallViewerIndex === 0) {
+    if(this.CurrentLargeViewerIndex === 0) {
       let n: number = -this.ImageSize * this.imageArrInput.length-1;
 
-      this.SmallViewerDiv.forEach(function(val) {
+      this.LargeViewerDiv.forEach(function(val) {
         val.nativeElement.style.transition = "none";
         val.nativeElement.style.transform = 'translateX('+ (n) +'px)';
       })
 
-      this.CurrentSmallViewerIndex = this.SmallViewerLength-2;
+      this.CurrentLargeViewerIndex = this.LargeViewerLength-2;
     }
 
     //If this is the n-1, rotate to the index 1
-    else if(this.CurrentSmallViewerIndex === this.SmallViewerLength-1) {
+    else if(this.CurrentLargeViewerIndex === this.LargeViewerLength-1) {
       let n: number = -this.ImageSize * 1;
 
-      this.SmallViewerDiv.forEach(function(val) {
+      this.LargeViewerDiv.forEach(function(val) {
         val.nativeElement.style.transition = "none";
         val.nativeElement.style.transform = 'translateX('+ (n) +'px)';
       })
 
-      this.CurrentSmallViewerIndex = 1;
+      this.CurrentLargeViewerIndex = 1;
     }
   }
 
   ClickRight(): void {
-    this.CurrentSmallViewerIndex += 1;
+    this.CurrentLargeViewerIndex += 1;
 
-    let n: number = -this.ImageSize * this.CurrentSmallViewerIndex;
+    let n: number = -this.ImageSize * this.CurrentLargeViewerIndex;
     
-    this.SmallViewerDiv.forEach(function(val) {
+    this.LargeViewerDiv.forEach(function(val) {
       val.nativeElement.style.transition = "transform 0.4s ease-in-out";
       val.nativeElement.style.transform = 'translateX('+ (n) +'px)';
     });
