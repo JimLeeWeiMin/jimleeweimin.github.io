@@ -22,6 +22,9 @@ export class ImageViewerComponent implements OnInit {
   private LargeViewerDiv : QueryList<ElementRef> = {} as QueryList<ElementRef>;
   public CurrentLargeViewerIndex: number = 0;
 
+  @ViewChild('LargeViewerContainer')
+  private LargeViewerContainerDiv: ElementRef = {} as ElementRef;
+
   private LargeViewerLength = 0;
 
   //Icon
@@ -29,16 +32,15 @@ export class ImageViewerComponent implements OnInit {
   iconArrowRight = faArrowRight;
 
   private HeightScale : number = 0.6;
-  private WidthScale : number = 0.6;
+  private WidthScale : number = 0.5;
 
   // Resize event
   @HostListener('window:resize', ['$event'])
   getScreenSize(e: Event) {
     this.LargeImageHeight = window.innerHeight * this.HeightScale;
-    this.LargeImageWidth = window.innerWidth * this.WidthScale;
+    this.LargeImageWidth = this.LargeViewerContainerDiv.nativeElement.clientWidth;//window.innerWidth;// * this.WidthScale;
 
-    console.log("Height: " + window.innerHeight);
-    console.log("Width: " + window.innerWidth);
+    this.SetImageWidth();
   }
 
   constructor() { }
@@ -57,28 +59,44 @@ export class ImageViewerComponent implements OnInit {
     this.ImageArr.unshift( new ImageContainer(this.imageArrInput[sz-1], this.imageArrInput[sz-1].substring(this.imageArrInput[sz-1].lastIndexOf("/")+1)));
     this.ImageArr.push( new ImageContainer(this.imageArrInput[0], this.imageArrInput[0].substring(this.imageArrInput[0].lastIndexOf("/")+1)) );
 
+    
+      
+  }
+
+  ngAfterViewInit(): void {
+
     //Set the image size
     if(this.largeImageHeightInput != 0) {
       this.LargeImageHeight = this.largeImageHeightInput;
     }
     else {
       this.LargeImageHeight = window.innerHeight * this.HeightScale;
-      console.log("Height: " + window.innerHeight);
+      //console.log("Height: " + window.innerHeight);
     }
 
     if(this.largeImageWidthInput != 0) {
       this.LargeImageWidth = this.largeImageWidthInput;
     }
     else {
-      this.LargeImageWidth = window.innerWidth * this.WidthScale;
-      console.log("Width: " + window.innerWidth);
+      this.LargeImageWidth = this.LargeViewerContainerDiv.nativeElement.clientWidth; //window.innerWidth;// * this.WidthScale;
+      //console.log("Width: " + window.innerWidth);
     }
-      
-  }
 
-  ngAfterViewInit(): void {
+    this.SetImageWidth();
+
     this.LargeViewerLength = this.ImageArr.length;
     this.ClickRight();
+  }
+
+  SetImageWidth(): void {
+    // Set the css so it will maintain aspect ratio
+    let x: number = this.LargeImageWidth;
+    let y: number = this.LargeImageHeight;
+
+    this.LargeViewerDiv.forEach(function(val) {
+      val.nativeElement.style.maxWidth = x + "px";
+      val.nativeElement.style.maxHeight = y + "px";
+    });
   }
 
   ClickLeft() : void {
@@ -128,7 +146,6 @@ export class ImageViewerComponent implements OnInit {
       val.nativeElement.style.transition = "transform 0.4s ease-in-out";
       val.nativeElement.style.transform = 'translateX('+ (n) +'px)';
     });
-
   }
 }
 
