@@ -3,3 +3,20 @@
     height: 100%;
     background-color: white;
 }
+
+/* Tablet */
+@media screen and
+(min-width: 601px) and
+(max-width: 1279px) {
+    .PortfolioWrapper {
+        margin-top: 100px;
+        left: 0%;
+    }
+}
+
+/* Phone */
+@media screen and
+(min-width: 1px) and
+(max-width: 600px) {
+
+}

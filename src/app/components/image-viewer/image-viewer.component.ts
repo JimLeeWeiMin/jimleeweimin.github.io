@@ -69,6 +69,9 @@ export class ImageViewerComponent implements OnInit {
 
   SetImageWidth(): void {
     // Set the css so it will maintain aspect ratio
+    this.LargeImageHeight = window.innerHeight * this.HeightScale;
+    this.LargeImageWidth = document.getElementsByClassName("LargeViewerContainer")[0].clientWidth;
+    
     let x: number = this.LargeImageWidth;
     let y: number = this.LargeImageHeight;
 
