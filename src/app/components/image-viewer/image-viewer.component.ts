@@ -102,8 +102,8 @@ export class ImageViewerComponent implements OnInit {
     this.ButtonLeftDiv.nativeElement.style.fontSize = cTop + "px";
     this.ButtonRightDiv.nativeElement.style.fontSize = cTop + "px";
 
-    this.ButtonLeftDiv.nativeElement.style.top = ((tHeight+cTop)/2) + "px";
-    this.ButtonRightDiv.nativeElement.style.top = ((tHeight+cTop)/2) + "px";
+    this.ButtonLeftDiv.nativeElement.style.top = ((tHeight-cTop)/2) + "px";
+    this.ButtonRightDiv.nativeElement.style.top = ((tHeight-cTop)/2) + "px";
   }
 
   ClickLeft() : void {
