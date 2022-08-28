@@ -478,3 +478,49 @@
     width: 100%;
     height: 75%;
 }
+
+
+@media screen and
+(min-width: 1px) and
+(max-width: 450px) { 
+    .ToolWrapper {
+        position: absolute;
+        bottom: 0%;
+
+        background-color: transparent;
+    }
+
+    .Swatches {
+        visibility: hidden;
+    }
+
+    .ColorGradient {
+        visibility: hidden;
+    }
+
+    .Brush {
+        visibility: hidden;
+    }
+
+    .BrushTypesWrapper {
+        visibility: visible;
+        overflow: visible;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .BrushTypesButtonWrapper {
+        position: absolute;
+        visibility: visible;
+        overflow: visible;
+    }
+
+    .File {
+        visibility: hidden;
+    }
+
+    .DrawingCanvasWrapper {
+        height: 100%;
+    }
+}

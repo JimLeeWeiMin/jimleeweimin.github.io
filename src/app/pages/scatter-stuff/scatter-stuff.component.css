@@ -281,6 +281,11 @@
     (min-width: 1px) and
     (max-width: 450px) {
 
+        .Pages {
+            border-bottom: solid rgb(190, 190, 190);
+            border-width: thin;
+        }
+
         .PageSelect {
             font-size: 15px;
             color: gray;
