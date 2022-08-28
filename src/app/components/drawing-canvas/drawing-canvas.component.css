@@ -485,9 +485,7 @@
 (max-width: 450px) { 
     .ToolWrapper {
         position: absolute;
-        bottom: 0%;
-
-        background-color: transparent;
+        display: none;
     }
 
     .Swatches {

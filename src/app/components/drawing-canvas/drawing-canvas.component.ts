@@ -560,11 +560,12 @@ export class DrawingCanvasComponent implements OnInit {
     if(this.currentUserSelection === this.eDrawingCanvasSelection.Brush) {
       // Get the div to follow the mouse
       this.myBrushPointer.nativeElement.style.left = String(this.lastCanvasX) + "px";
-      this.myBrushPointer.nativeElement.style.top = String(evt.touches[0].clientY) + "px";
+      this.myBrushPointer.nativeElement.style.top = String(this.lastCanvasY) + "px";
+      console.log(evt)
     }
     else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
       this.myEraserPointer.nativeElement.style.left = String(this.lastCanvasX) + "px";
-      this.myEraserPointer.nativeElement.style.top = String(evt.touches[0].clientY) + "px";
+      this.myEraserPointer.nativeElement.style.top = String(this.lastCanvasY) + "px";
     }
   }
 
@@ -634,6 +635,8 @@ export class DrawingCanvasComponent implements OnInit {
       // Get the div to follow the mouse
       this.myBrushPointer.nativeElement.style.left = String(evt.offsetX) + "px";
       this.myBrushPointer.nativeElement.style.top = String(evt.clientY) + "px";
+
+      
     }
     else if (this.currentUserSelection === this.eDrawingCanvasSelection.Eraser) {
       this.myEraserPointer.nativeElement.style.left = String(evt.offsetX) + "px";
@@ -656,6 +659,7 @@ export class DrawingCanvasComponent implements OnInit {
     }
 
   }
+  
   Draw(_x: number, _y: number):void {
     this.ctxDrawingBlock.beginPath();
     this.ctxDrawingBlock.arc(_x, _y, this.PixelSizeX, 0, 2 * Math.PI);
