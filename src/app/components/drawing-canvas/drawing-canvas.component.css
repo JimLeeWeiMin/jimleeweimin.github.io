@@ -482,7 +482,7 @@
 
 @media screen and
 (min-width: 1px) and
-(max-width: 450px) { 
+(max-width: 600px) { 
     .ToolWrapper {
         position: absolute;
         display: none;
@@ -521,4 +521,5 @@
     .DrawingCanvasWrapper {
         height: 100%;
     }
+
 }
