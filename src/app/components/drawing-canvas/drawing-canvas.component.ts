@@ -47,8 +47,8 @@ export class DrawingCanvasComponent implements OnInit {
   private mouseDownGrayFlag = false;
 
   // Drawing Canvas Color
-  private currentColor: string = "rgb(255,0,0)";
-  private prevColor: string = "rgb(255,0,0)";
+  private currentColor: string = "rgb(0,0,0)";
+  private prevColor: string = "rgb(0,0,0)";
 
   // Drawing Canvas Attributes
   public PixelSizeX: number = 10;
